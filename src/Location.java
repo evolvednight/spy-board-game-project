@@ -1,9 +1,9 @@
 
 public class Location {
 	
-	boolean visible ;
-	String coden ;
-	String ma ;
+	protected boolean visible ;
+	protected String coden ;
+	protected String ma ;
 	public Location (boolean flip, String codename, String team) {
 		
 		visible = flip ;
@@ -22,6 +22,17 @@ public class Location {
 	}
 	public String getTeam() {
 		return ma ; 
+	}
+	
+	public void setVisibility(boolean setflip) {
+		this.visible = setflip;
+	}
+	
+	public void setCodeName(String setcoden) {
+		this.coden = setcoden ;
+	}
+	public void setTeam(String setteam) {
+		this.ma = setteam; 
 	}
 	
 	
