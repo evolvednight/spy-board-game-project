@@ -6,10 +6,13 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class main {
-	private String[][] board;
+	
+	
+	/*private String[][] board;
 	private ArrayList<String>codeNamesOnBoard;
 	private HashMap<String,Boolean>visibility;
 	private HashMap<String, String>teamCodes;
+	ArrayList<Location> boardPieces = new ArrayList<Location>() ;
 	
 	public main() {	
 		String filename = "src/GameWords.txt";		//initializes stuff
@@ -42,10 +45,10 @@ public class main {
 		ArrayList<String>copy = new ArrayList<>(codeNamesOnBoard);	//creates a new arraylist that has codenamesOnBoard
 		
 		Collections.shuffle(copy);
-		
+		for(int k = 0 ; k < 25;k++) {
 		for(int i = 0;i<9;i++) {	//adds the first 9 codenames(0-8) to hashmap under Red Team 
 			teamCodes.put(copy.get(i), "Red");
-			}
+								}
 		for(int i = 9;i<17;i++) {	//adds the next 8 codenames(9-16) to hashmap under Blue Team 
 			teamCodes.put(copy.get(i), "Blue");
 			}
@@ -54,7 +57,7 @@ public class main {
 			}
 		
 		teamCodes.put(copy.get(24), "Assassin");	//makes last codename the assassin
-		
+		}
 	}
-		
+*/		
 }
