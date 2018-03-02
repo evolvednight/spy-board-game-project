@@ -93,6 +93,32 @@ public class main extends board{
 		}
 return true;
 }
+ 
+ public void whoWonWhenAss(String[] args) { 
+		int turn = 1 ; //delete later
+		int numAssassin = 1 ; // delete later
+		
+		int xturn = turn  ;
+		
+		int checkass = numAssassin ;
+		
+		String red = "Team Red" ;
+		String blue = "Team blue" ;
+		String pwin = "";
+		
+		if (checkass == 0 ) {
+		
+		if (xturn == 1) {	pwin = blue ;	}
+		if (xturn == 0) { pwin = red ; }
+		       
+		System.out.println(pwin + " wins!!");
+			
+		}else {//does nothing game keeps going//
+			
+		}
+ 
+ 
+ 
  }
 //End of Austins Code
 	
@@ -148,3 +174,4 @@ return true;
 //		teamCodes.put(copy.get(24), "Assassin");	//makes last codename the assassin
 //		}
 //	}
+}
