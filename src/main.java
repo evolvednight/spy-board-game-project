@@ -93,6 +93,21 @@ public class main extends board{
 		}
 return true;
 }
+ public boolean WinningState() { //Determines whether the game is in winning state
+		if(numRed == 0) {
+			System.out.println("Red team wins!");
+			return true;
+			
+		}
+		else if(numBlue == 0) {
+			System.out.println("Blue Team wins!");
+			return true;
+			
+		}
+		else {
+			return false;
+		}
+	}
  
  public void whoWonWhenAss(String[] args) { 
 		int turn = 1 ; //delete later
