@@ -1,16 +1,15 @@
 
 public class Location {
 	
-	protected boolean visible ;
-	protected String coden ;
-	protected String ma ;
+	private boolean visible ;
+	private String coden ;
+	private String ma ;
+	
 	public Location (boolean flip, String codename, String team) {
 		
 		visible = flip ;
 		coden = codename ; 
 		ma = team ;
-		
-		
 	}
 	
 	public boolean getVisibility() {

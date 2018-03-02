@@ -6,27 +6,34 @@ import java.util.ArrayList;
 
 public class board {
 	
-public void getCodeNames() {
-	ArrayList<String> allCodeNames = new ArrayList<>() ;
-	
-	try {
-		URI filename = null;
-		for(String codename : Files.readAllLines(Paths.get(filename))) {	//reads file to get all codenames
-			allCodeNames.add(codename);
-		}
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	private int turn = 1; 		//1 is red turns, 0 is blue turn
+	protected ArrayList<Location>allLocations;
+	protected ArrayList<String>codeNamesOnBoard;
 	
 	
-	
-	
+public board() {
+	allLocations = new ArrayList<Location>();
 }
 	
-	
-	
-	
+public ArrayList<Location> getLocations(){
+	return allLocations;
+}
+
+public int getTurn() {
+	return turn;
+}
+
+public void setTurn(int x) {
+	turn = x;
+}
+
+public ArrayList<String> getCodeNamesOnBoard(){
+	return codeNamesOnBoard;
+}
+
+//public void setLocations(ArrayList<Location>x) {
+//	allLocations = x;
+//}
 	
 
 }
