@@ -38,7 +38,7 @@ public class Assigning extends board{
 			tempArr.add(temp);
 			}
 		for(int i = 17;i<24;i++) {	//adds the next 7 codenames(17-23) to ArrayList under Bystander 
-			Location temp = new Location(false,codeNamesOnBoard.get(i),"Bysteander");
+			Location temp = new Location(false,codeNamesOnBoard.get(i),"Bystander");
 			tempArr.add(temp);
 			}
 		

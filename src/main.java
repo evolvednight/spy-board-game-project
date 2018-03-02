@@ -5,7 +5,76 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class main {
+public class main extends board{
+	// Edwin: code need correction
+			private int numRed = 9;			//declare numbers of all different character for count purpose
+			private int numBlue = 8;
+			private int numBystander = 7;
+			private int numAssassin = 1;
+			/*
+			Scanner choiceRed = new Scanner(System.in);
+			System.out.println("Player1 please type in your choice");
+			String cRed = choiceRed.nextLine();
+			allRed.add(cRed);
+			checkSelection();
+			// HAVE TO IMPLEMENT ALL METHODS HERE to check winning state
+			Scanner choiceBlue = new Scanner(System.in);
+			System.out.println("Player2 please type in your choice");
+			String cBlue = choiceBlue.nextLine();
+			allBlue.add(cBlue);
+			checkSelection();
+			// HAVE TO IMPLEMENT ALL METHODS HERE to check winning state
+			// pop cRed into array for all red choices
+			 */
+			/*
+			for (int i = 0; i<25 ; i++) {
+				visibility.put(copy.get(i), false); //all false values are not visible	
+			}
+			*/
+			public boolean checkSelection(String locationx) { //locationx = selected piece
+				
+				for (int i = 0; i<25; i++) {
+					if (locationx == allLocations.get(i).getCodeName()) {
+						if (allLocations.get(i).getTeam() == "Red") {
+							numRed--;							// need method for keep or switch turn
+							allLocations.get(i).setVisibility(true);      // change the value to face up
+							if (getTurn() == 0){
+								setTurn(1);
+								return false;
+							} else
+								return true;
+						} else if (allLocations.get(i).getTeam() == "Blue") {
+							numBlue--;							// need method for keep or switch turn
+							allLocations.get(i).setVisibility(true);     // change the value to face up
+							if (getTurn() == 1) {
+								setTurn(0);
+								return false;
+							}
+							else
+								return true;
+						} else if (allLocations.get(i).getTeam() == "Bystander") {
+							numBystander--;						// need method for keep or switch turn
+							allLocations.get(i).setVisibility(true);      // change the value to face up
+							if (getTurn() == 0){
+								setTurn(1);
+								return false;
+							}
+							else {
+								setTurn(0);
+								return false;
+							}
+						} else if (allLocations.get(i).getTeam() == "Assassin") {
+							numAssassin--;
+							allLocations.get(i).setVisibility(true); // change the value to face up
+							return false;
+						}
+					} else {
+						System.out.println("incorrect selection"); // need method for keep turn
+					} 
+				}
+				return false;
+			}  // end of edwin's code.
+		}
 	
 //	
 //	private String[][] board;
@@ -59,5 +128,3 @@ public class main {
 //		teamCodes.put(copy.get(24), "Assassin");	//makes last codename the assassin
 //		}
 //	}
-		
-}
