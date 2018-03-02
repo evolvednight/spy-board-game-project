@@ -74,7 +74,27 @@ public class main extends board{
 				}
 				return false;
 			}  // end of edwin's code.
+		
+
+ public boolean Llegality(String clue) {
+	String x = clue.toLowerCase();
+	String y = clue.toUpperCase();
+	for( int i = 0 ; i< allLocations.size(); i++) {
+	if(allLocations.get(i).getCodeName() == x && allLocations.get(i).getVisibility() == false) {
+		return false;
+	}
+		else if(allLocations.get(i).getCodeName() == y && allLocations.get(i).getVisibility() == false){
+				return false;
+			}
+	
+		else if(clue.contains(" ")) {
+			return false;
 		}
+		}
+return true;
+}
+ }
+//End of Austins Code
 	
 //	
 //	private String[][] board;
