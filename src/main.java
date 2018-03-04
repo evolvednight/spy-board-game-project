@@ -91,7 +91,9 @@ public class main extends board{
 			return false;
 		}
 		}
+	
 return true;
+	
 }
  public boolean WinningState() { //Determines whether the game is in winning state
 		if(numRed == 0) {
