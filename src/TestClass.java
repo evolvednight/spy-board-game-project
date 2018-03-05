@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import edu.buffalo.cse116.Assigning;
-import edu.buffalo.cse116.main;
+
 
 public class TestClass extends main{
 	@Test
