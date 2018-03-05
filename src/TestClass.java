@@ -28,6 +28,7 @@ public class TestClass extends main{
 		assertEquals(true,y);
 		
 	}
+	
 	@Test
 	public void checkInvalid() {
 		main x = new main();
