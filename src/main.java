@@ -17,7 +17,7 @@ public class main extends board{
 			private int numRed;			//declare numbers of all different character for count purpose
 			private int numBlue;
 			private int numBystander = 7;
-			private int numAssassin = 1;
+			protected int numAssassin = 1;
 			/*
 			Scanner choiceRed = new Scanner(System.in);
 			System.out.println("Player1 please type in your choice");
@@ -44,6 +44,18 @@ public class main extends board{
 			public void setNumBlue(int y ) {
 				numBlue = y;
 			}
+			
+			 /**
+			  * Returns true if the current selection is one of the current team’s agent
+			  * this method decrement the count of each team when the codename was selected
+			  *
+			  *@author Edwin Hung
+			  * @param  url  an absolute URL giving the base location of the image
+			  * @param  name the location of the image, relative to the url argument
+			  * @return true    if the location does contain current team agent
+			 * @return false   if the location does not contain current team agent
+			 */
+			
 			public boolean checkSelection(String locationx) { //locationx = selected piece
 				gameStart();
 				for (int i = 0; i<25; i++) {
@@ -89,6 +101,18 @@ public class main extends board{
 			}  // end of edwin's code.
 		
 
+			
+			
+			
+			
+/**
+ * @author Austin Van Dood			
+ * @param clue-string of a clue used in game
+ * @return-boolean whether clue is legal
+ */
+			
+			
+			
  public boolean Llegality(String clue) {
 	 gameStart();
 	String x = clue.toLowerCase();//Turns clue into Lowercase
@@ -111,6 +135,21 @@ public class main extends board{
 return true;
 	
 }
+ 
+/**
+* 
+*@author Edwin Medrano-Abzun 
+* WinningState deteremines whether the game board is in a "winning state"
+*there is three conditions that it checks for, 
+*whether blue or red is equal to zero it will 
+*@return true
+*anything else it will 
+*@return false 
+*
+*/
+ 
+
+
  public boolean winningState() { //Determines whether the game is in winning state
 		if(numRed == 0 && numBlue != 0) {
 			System.out.println("Red team wins!");
@@ -128,11 +167,21 @@ return true;
 		return false;
 	}
  
+/**
+ * @author Hasan
+ * Checks if the assassin location was picked and determines if the game should be ended, and if so
+ * which team has won
+ * 
+ * @return false if assassin was not picked
+ * @return true if assassin was found and prints which team won
+ */
+ 
+ 
+ 
  public boolean whoWonWhenAss() { 
-		int turn = 1 ; //delete later
-		int numAssassin = 1 ; // delete later
-		
-		int xturn = turn  ;
+//		int turn = 1 ; //delete later
+//		int numAssassin = 1 ; // delete later
+		int xturn = getTurn();
 		
 		int checkass = numAssassin ;
 		
@@ -148,7 +197,7 @@ return true;
 		System.out.println(pwin + " wins!!") ; // prints who wins
 
 		return true; 
-			
+			//
 		}else {//does nothing game keeps going//
 			return false ;
 		}
@@ -211,6 +260,21 @@ return true;
 //		}
 //	}
  
+ 
+ 
+ 
+ 
+
+/**
+*
+*Reads through a file, randomizes and selects 25 codenames, selects a team for each codename,
+*adds it into an arraylist which will be used to keep track of each location
+*
+*@author-Musaiyab Ali
+*@param no parameters
+*@return nothing
+*
+*/ 
  public void gameStart() {
 		String filename = "src/GameWords1.txt";
 		ArrayList<String>allCodeNames = new ArrayList<>();

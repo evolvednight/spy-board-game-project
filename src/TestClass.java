@@ -76,10 +76,10 @@ public class TestClass extends main{
 	public void testWhoWonWhenAss() {
 		
 		main kk = new main() ;
-		int assasin = 1 ; /// SET THE ASSASIN to 1
-		int turn = 1 ; // set turn to 1 aka  red ;
+		numAssassin = 0; /// SET THE ASSASIN to 1
+		setTurn(1); // set turn to 1 aka  red ;
 		
-		assertEquals(true, whoWonWhenAss()) ;
+		assertEquals(true, kk.whoWonWhenAss()) ;
 		
 	}
 
