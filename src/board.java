@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class board {
 	
-	private int turn = 1; 		//1 is red turns, 0 is blue turn
+	protected int turn = 1; 		//1 is red turns, 0 is blue turn
 	protected ArrayList<Location>allLocations  = new ArrayList<Location>();
 	protected ArrayList<String>codeNamesOnBoard = new ArrayList<String>();
 	
