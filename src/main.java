@@ -6,6 +6,13 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class main extends board{
+	protected board something;
+	
+	
+	
+	
+	
+	
 	// Edwin: code need correction
 			private int numRed = 9;			//declare numbers of all different character for count purpose
 			private int numBlue = 8;
@@ -77,20 +84,23 @@ public class main extends board{
 		
 
  public boolean Llegality(String clue) {
-	String x = clue.toLowerCase();
-	String y = clue.toUpperCase();
+	 gameStart();
+	String x = clue.toLowerCase();//Turns clue into Lowercase
+	String y = clue.toUpperCase();//Turns clue into Uppercase
+	
+	if(clue.contains(" ")) { //if clue contains a space its invalid
+		return false;
+	}
+	
 	for( int i = 0 ; i< allLocations.size(); i++) {
+		//System.out.println(allLocations.get(i));
 	if(allLocations.get(i).getCodeName() == x && allLocations.get(i).getVisibility() == false) {
 		return false;
 	}
 		else if(allLocations.get(i).getCodeName() == y && allLocations.get(i).getVisibility() == false){
 				return false;
 			}
-	
-		else if(clue.contains(" ")) {
-			return false;
-		}
-		}
+		}// if clue is the same as a codename but has not been revealed its invalid 
 	
 return true;
 	
@@ -191,4 +201,64 @@ return true;
 //		teamCodes.put(copy.get(24), "Assassin");	//makes last codename the assassin
 //		}
 //	}
+ 
+ public void gameStart() {
+		String filename = "src/GameWords1.txt";
+		ArrayList<String>allCodeNames = new ArrayList<>();
+		
+		try {
+			for(String codename : Files.readAllLines(Paths.get(filename))) {	//reads file to get all codenames
+				allCodeNames.add(codename);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Collections.shuffle(allCodeNames);	//shuffles all codenames
+		
+		for(int i = 0; i <25;i++) {
+			codeNamesOnBoard.add(allCodeNames.get(i));	//adds 25 to an Arraylist
+		}
+		Collections.shuffle(codeNamesOnBoard);		//reshuffles arraylist with all codenames in use
+		
+		ArrayList<Location>tempArr = new ArrayList<Location>();
+		
+		for(int i = 0;i<9;i++) {	//adds the first 9 codenames(0-8) to ArrayList under Red Team 
+			Location temp = new Location(false,codeNamesOnBoard.get(i),"Red");
+			tempArr.add(temp);
+								}
+		for(int i = 9;i<17;i++) {	//adds the next 8 codenames(9-16) to ArrayList under Blue Team 
+			Location temp = new Location(false,codeNamesOnBoard.get(i),"Blue");
+			tempArr.add(temp);
+			}
+		for(int i = 17;i<24;i++) {	//adds the next 7 codenames(17-23) to ArrayList under Bystander 
+			Location temp = new Location(false,codeNamesOnBoard.get(i),"Bystander");
+			tempArr.add(temp);
+			}
+		
+		Location temp = new Location(false,codeNamesOnBoard.get(24),"Assassin");
+		tempArr.add(temp);	//makes last codename the assassin
+		
+		for(int i = 0;i<tempArr.size();i++) {
+			allLocations.add(tempArr.get(i));
+		}
+//		System.out.println(allLocations);
+		//sets local field ArrayList values to newly initialized locations
+		}
+		
+	
+	
+	public ArrayList<String> getCodeNamesOnBoard(){
+		return codeNamesOnBoard;
+	}
+	
+	
+
 }
+
+ 
+ 
+ 
+ 
+

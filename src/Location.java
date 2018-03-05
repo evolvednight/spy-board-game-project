@@ -11,7 +11,8 @@ public class Location {
 		coden = codename ; 
 		ma = team ;
 	}
-	
+
+
 	public boolean getVisibility() {
 		return visible ;
 	}
