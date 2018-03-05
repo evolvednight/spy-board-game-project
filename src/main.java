@@ -128,7 +128,7 @@ return true;
 		return false;
 	}
  
- public void whoWonWhenAss(String[] args) { 
+ public boolean whoWonWhenAss() { 
 		int turn = 1 ; //delete later
 		int numAssassin = 1 ; // delete later
 		
@@ -145,10 +145,12 @@ return true;
 		if (xturn == 1) {	pwin = blue ;	}
 		if (xturn == 0) { pwin = red ; }
 		       
-		System.out.println(pwin + " wins!!");
+		System.out.println(pwin + " wins!!") ; // prints who wins
+
+		return true; 
 			
 		}else {//does nothing game keeps going//
-			
+			return false ;
 		}
  
  
