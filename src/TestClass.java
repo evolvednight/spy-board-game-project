@@ -52,5 +52,25 @@ public class TestClass extends main{
 	assertEquals(true,y);
 	
 	}
+	@Test
+	public void testWinningState1() {
+		setNumRed(0);
+		setNumBlue(8);
+		assertEquals(true, winningState() );
+		
+	}
+	@Test
+	public void testWinningState2() {
+		setNumRed(7);
+		setNumBlue(0);
+		assertEquals(true, winningState() );
+		
+	}
+	@Test
+	public void testWinningState3() {
+		setNumRed(6);
+		setNumBlue(3);
+		assertEquals(false, winningState() );
+	}
 
 }

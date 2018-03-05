@@ -14,8 +14,8 @@ public class main extends board{
 	
 	
 	// Edwin: code need correction
-			private int numRed = 9;			//declare numbers of all different character for count purpose
-			private int numBlue = 8;
+			private int numRed;			//declare numbers of all different character for count purpose
+			private int numBlue;
 			private int numBystander = 7;
 			private int numAssassin = 1;
 			/*
@@ -38,6 +38,12 @@ public class main extends board{
 				visibility.put(copy.get(i), false); //all false values are not visible	
 			}
 			*/
+			public void setNumRed(int x) {
+				numRed = x;
+			}
+			public void setNumBlue(int y ) {
+				numBlue = y;
+			}
 			public boolean checkSelection(String locationx) { //locationx = selected piece
 				gameStart();
 				for (int i = 0; i<25; i++) {
@@ -105,20 +111,21 @@ public class main extends board{
 return true;
 	
 }
- public boolean WinningState() { //Determines whether the game is in winning state
-		if(numRed == 0) {
+ public boolean winningState() { //Determines whether the game is in winning state
+		if(numRed == 0 && numBlue != 0) {
 			System.out.println("Red team wins!");
 			return true;
 			
 		}
-		else if(numBlue == 0) {
+		else if(numBlue == 0 && numRed != 0) {
 			System.out.println("Blue Team wins!");
 			return true;
 			
 		}
-		else {
+		else if (numRed != 0 && numBlue != 0){
 			return false;
 		}
+		return false;
 	}
  
  public void whoWonWhenAss(String[] args) { 
