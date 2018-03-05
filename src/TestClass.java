@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import edu.buffalo.cse116.Assigning;
+import edu.buffalo.cse116.main;
+
 public class TestClass extends main{
 	@Test
 	public void testLlegality() { // test will only pass if there is something in allLocations arrayList
@@ -25,6 +28,29 @@ public class TestClass extends main{
 		boolean y  = x.Llegality("TestTrue");
 		assertEquals(true,y);
 		
+	}
+	@Test
+	public void checkInvalid() {
+		main x = new main();
+
+
+		boolean y  = x.checkSelection("AFRICA");
+		assertEquals(false,y);
+	}
+	@Test
+	public void checkTrueSelection() {
+	main x = new main();
+
+	boolean y  = x.checkSelection("");
+	assertEquals(false,y);
+	}
+	@Test
+	public void check() {
+	main x = new main();
+
+	boolean y  = x.checkSelection("usa");
+	assertEquals(true,y);
+	
 	}
 
 }
