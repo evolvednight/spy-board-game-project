@@ -57,7 +57,7 @@ public class main extends board{
 			 */
 			
 			public boolean checkSelection(String locationx) { //locationx = selected piece
-				gameStart();
+				
 				for (int i = 0; i<25; i++) {
 					if (locationx == allLocations.get(i).getCodeName()) {
 						if (allLocations.get(i).getTeam() == "Red") {

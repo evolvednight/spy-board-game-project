@@ -32,24 +32,26 @@ public class TestClass extends main{
 	@Test
 	public void checkInvalid() {
 		main x = new main();
-
-
-		boolean y  = x.checkSelection("AFRICA");
+		x.gameStart();
+		String i = "";
+		boolean y  = x.checkSelection(i);
 		assertEquals(false,y);
 	}
 	@Test
 	public void checkTrueSelection() {
-	main x = new main();
-
-	boolean y  = x.checkSelection("");
-	assertEquals(false,y);
+		main x = new main();
+		x.gameStart();
+		String i = x.getCodeNamesOnBoard().get(2);
+		boolean y  = x.checkSelection(i);	
+	assertEquals(true,y);
 	}
 	@Test
-	public void check() {
+	public void checkFalseSelection() {
 	main x = new main();
-
-	boolean y  = x.checkSelection("usa");
-	assertEquals(true,y);
+	x.gameStart();
+	String i = x.getCodeNamesOnBoard().get(10);
+	boolean y  = x.checkSelection(i);
+	assertEquals(false,y);
 	
 	}
 	@Test
