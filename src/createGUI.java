@@ -16,6 +16,16 @@ public class createGUI {
 	x1.setLayout(inX);
 	
 	x1.add(new JButton("restart"));
+	
+	//hasan
+	JButton tend = new JButton("End turn") ;// lets make this the the button that ends turns
+	x1.add(tend);
+	int gg = 1 ;//set this equal to the count getter
+	if(gg== 0) { tend.doClick(); } // ends turn when clue count is  0 
+	//end
+	
+	
+	
 	//easter egg field
 	JTextArea easterEgg = new JTextArea();
 	easterEgg.setText("**MAYBE** put easterEgg here");
@@ -31,7 +41,15 @@ public class createGUI {
 
 	JTextArea countField = new JTextArea();
 	countField.setText("this field is for red and blue counter");
-	x1.add(countField);
+	x1.add(countField); 
+	
+	//hasan
+	JTextArea clueAndCount = new JTextArea() ;
+	String x = "set equal to clue getter, " ;//need getters
+	String g = "set equal to number of cards the clue applies to" ;//need getters
+	clueAndCount.setText(x + g);
+	x1.add(clueAndCount);
+	//end 
 	
 	
 	
