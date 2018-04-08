@@ -1,11 +1,7 @@
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class board {
+import java.util.ArrayList;
+
+public class board{
 	
 	protected int turn = 1; 		//1 is red turns, 0 is blue turn
 	protected ArrayList<Location>allLocations  = new ArrayList<Location>();
