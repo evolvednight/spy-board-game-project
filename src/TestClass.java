@@ -13,18 +13,18 @@ public class TestClass extends main{
 		main x = new main();
 		
 		
-		boolean y  = x.Llegality("Test False");
+		boolean y  = x.Legality("Test False");
 		assertEquals(false,y);
 		
 	}
 
 	@Test
-	public void testLlegality2() {
+	public void testLegality2() {
 		
 		
 		
 		main x = new main();
-		boolean y  = x.Llegality("TestTrue");
+		boolean y  = x.Legality("TestTrue");
 		assertEquals(true,y);
 		
 	}

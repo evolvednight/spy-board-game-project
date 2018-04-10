@@ -119,7 +119,7 @@ public class main extends board{
 
 
 
-	public boolean Llegality(String clue) {
+	public boolean Legality(String clue) {
 		gameStart();
 		String x = clue.toLowerCase();//Turns clue into Lowercase
 		String y = clue.toUpperCase();//Turns clue into Uppercase
@@ -140,6 +140,14 @@ public class main extends board{
 
 		return true;
 
+	}
+	public boolean legalityNum(int x) {
+		if( x > 0 && x <= 9) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
