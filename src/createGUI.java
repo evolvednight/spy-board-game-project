@@ -75,14 +75,15 @@ public class createGUI implements Observer {
 	
 
 		JMenuBar menuBar = new JMenuBar();
-		JMenu menu = new JMenu(); 
-		JMenuItem item = new JMenuItem();
+		JMenu menu = new JMenu("File"); 
+		JMenuItem item = new JMenuItem("start");
 		menuBar.add(menu);
-		
+		menu.add(item);
 		
 		
 		
 		JFrame x1 = new JFrame("CodeName game");
+		x1.setJMenuBar(menuBar);
 		x1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		x1.setSize(1000,1000);
 		GridLayout inX = new GridLayout(2,2);
