@@ -26,6 +26,8 @@ import javafx.scene.control.ToggleButton;
 @SuppressWarnings("unused")
 public class createGUI implements Observer {
 	private int clueCount;
+	board ssr = new board();
+	int xx =ssr.getTurn() ;
 	public createGUI() {
 		restart();
 	}
@@ -255,14 +257,25 @@ public class createGUI implements Observer {
 		panelTop.add(labelCode);
 		panelTop.add(labelNumber);
 
-		//hasan
 		JButton tend = new JButton("End turn") ;// lets make this the the button that ends turns
 		panelTop.add(tend);
-		int gg = 1 ;//set this equal to the count getter
-		if(gg== 0) { tend.doClick(); } // ends turn when clue count is  0 
-		//end
+		tend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent t) {
+				ssr.changeTurn();
+			}
+		});
 
-
+		JLabel disturn = new JLabel();
+		if(xx == 1) {disturn.setText("Turn : Team Red");
+		disturn.setForeground(Color.red);
+		disturn.setFont(new Font("Serif", Font.PLAIN, 40));}
+		
+		if(xx == 0) {disturn.setText("Turn : Team Blue");
+		disturn.setForeground(Color.blue);
+		disturn.setFont(new Font("Serif", Font.PLAIN, 40));
+		
+		}
+		panelTop.add(disturn);
 
 		
 		
@@ -296,8 +309,8 @@ public class createGUI implements Observer {
 		
 		
 		
-		board ssr = new board();
-		int xx =ssr.getTurn() ;
+		
+	
 		
 		for( int i = 0; i<25 ; i++) {
 			String temp = m.allLocations.get(i).getCodeName();
@@ -308,21 +321,25 @@ public class createGUI implements Observer {
 		panelBottom.add(j);
 		j.addActionListener(new ActionListener( ) {
 			public void actionPerformed(ActionEvent E) {
-//			j.setText(team);
-			
+				boolean turnOver = false ;
+				clueCount = clueCount - 1 ;
+				if(clueCount == 0) { 
+					ssr.changeTurn(); 
+				 turnOver = true ;
+				}
 				
 				if(team == "Red") {
-					if(xx != 1) { ssr.changeTurn();}
+					if(xx != 1 && turnOver == false) { ssr.changeTurn();clueCount = 0 ;}
 					j.setForeground(Color.red);
 				}
 				else if(team == "Blue") {
-					if(xx != 0) { ssr.changeTurn();}
+					if(xx != 0 && turnOver == false) { ssr.changeTurn(); clueCount = 0 ;}
 					j.setForeground(Color.blue);
 					
 				}
 				else if ( team == "Bystander") {
 					j.setForeground(Color.yellow);
-					ssr.changeTurn();
+				if(turnOver == false) {	ssr.changeTurn(); clueCount = 0 ;}
 					
 				}
 				else if ( team == "Assassin") {
