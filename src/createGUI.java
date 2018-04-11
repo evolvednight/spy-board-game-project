@@ -46,13 +46,8 @@ public class createGUI implements Observer {
 	public void MakeGui() {
 		
 		main m = new main();
-//		ActionListner r = new ActionListner();
-//		board b = new board();
 		m.gameStart();
-//		System.out.println(m.codeNamesOnBoard);
-//		System.out.println(b.allLocations);
-//		System.out.println(b.tempArr);
-		
+
 		
 		
 		if(m.winningState() == true) {
@@ -77,20 +72,16 @@ public class createGUI implements Observer {
 				         (JFrame.DISPOSE_ON_CLOSE);
 				  win.pack();
 			}
-			
-			
-			
-
 		}
 
 	
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File"); 
-		JMenuItem item = new JMenuItem("start");
-		JMenuItem exit = new JMenuItem("exit");
+		JMenuItem start = new JMenuItem("Start New Game");
+		JMenuItem exit = new JMenuItem("Exit Game");
 		menuBar.add(menu);
-		menu.add(item);
+		menu.add(start);
 		menu.add(exit);
 		
 		
@@ -121,6 +112,26 @@ public class createGUI implements Observer {
 		
 		
 		
+		
+		
+		ActionListener start2 = new ActionListener() {//menu restart
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				x1.getContentPane().removeAll();
+				x1.dispose();
+				restart();
+			}
+		}
+		;
+		start.addActionListener(start2);
+		
+		
+		
+		
+		
+		
+		
+		
 		JButton restart = new JButton("Restart");
 		
 		restart.addActionListener(new ActionListener() {
@@ -134,47 +145,11 @@ public class createGUI implements Observer {
 				}
 			}
 		});
-		
+
 		panelTop.add(restart);
 		
 		
-//		//Easter Egg
-//	
-//		//JButton easterEgg = new JButton();
-//	//	x1.add(easterEgg);
-//		//easterEgg.setOpaque(false);
-//		//easterEgg.setContentAreaFilled(false);
-//		//easterEgg.setBorderPainted(false);
-//		
-//		ActionListener egg = new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				counter = counter + 1;
-//				if(counter == 5) {
-//				JFrame frame = new JFrame("EasterEgg");
-//				frame.setLocation(450, 250);
-//				ImageIcon icon = new ImageIcon("src/hertz.jpg");
-//				JLabel label = new JLabel(icon);
-//				
-//				frame.add(label);
-//				  frame.setDefaultCloseOperation
-//				         (JFrame.DISPOSE_ON_CLOSE);
-//				  frame.pack();
-//				  
-//				  frame.setVisible(true);
-//				  x1.getContentPane().setBackground(Color.black);
-//				//  easterEgg.setText("EasterEgg Unlocked");
-//				//  easterEgg.setForeground(Color.WHITE);
-//				}
-//				  
-//			  }	
-//		    }
-//		;
-		
-	//easterEgg.addActionListener(egg);
 
-		
 		
 		JButton Spy = new JButton( "Spy Master");
 		Spy.addActionListener(new ActionListener() {
@@ -215,12 +190,14 @@ public class createGUI implements Observer {
 						if(textField.getText().equals("")) {
 							textField.setText("Input Clue");
 							textField.setForeground(Color.LIGHT_GRAY);
-							
 						}
-						
 					 }	
 				    }
 				;
+				
+				
+				
+				
 				
 				FocusListener ghost2 = new FocusListener(){
 					@Override
@@ -237,7 +214,6 @@ public class createGUI implements Observer {
 					 }	
 				    }
 				;
-				
 			textField.addFocusListener(ghost1);
 			numField.addFocusListener(ghost2);
 				
@@ -285,9 +261,10 @@ public class createGUI implements Observer {
 					        f.getContentPane().add(lbl); //puts label inside the jframe
 
 					        f.setSize(image.getIconWidth(), image.getIconHeight()); //gets h and w of image and sets jframe to the size
+					        
 
 					 
-					        f.setLocation(450, 250); //sets the location of the jframe
+					        f.setLocation(150, 250); //sets the location of the jframe
 					        f.setVisible(true); //makes the jframe visible
 							}
 					    }
@@ -307,6 +284,13 @@ public class createGUI implements Observer {
 					}
 					
 				});
+				
+				
+				
+				
+				
+				
+				
 //				notifyObserver();
 				panelRight.add(jb);
 				panelRight.add(textField);
@@ -314,6 +298,8 @@ public class createGUI implements Observer {
 				panelRight.add(label1);
 				panelRight.add(label2);
 				x2.getContentPane().add(panelRight,BorderLayout.EAST);
+				
+				
 				
 				
 				x2.setSize(750, 750);
@@ -324,8 +310,7 @@ public class createGUI implements Observer {
 					JButton j = new JButton(temp);
 					if(m.allLocations.get(i).getTeam() == "Red") {
 						j.setBackground(Color.RED);
-						
-						
+	
 					}
 					else if( m.allLocations.get(i).getTeam() == "Blue") {
 						j.setBackground(Color.BLUE);
@@ -349,9 +334,19 @@ public class createGUI implements Observer {
 			}
 		}
 			);
+		
+		
+		
+		
+		
 		panelTop.add(Spy);
 		panelTop.add(labelCode);
 		panelTop.add(labelNumber);
+		
+		
+		
+		
+		
 
 		JButton tend = new JButton("End turn") ;// lets make this the the button that ends turns
 		panelTop.add(tend);
@@ -360,6 +355,12 @@ public class createGUI implements Observer {
 				ssr.changeTurn();
 			}
 		});
+		
+		
+		
+		
+		
+		
 
 		JLabel disturn = new JLabel();
 		if(xx == 1) {disturn.setText("Turn : Team Red");
@@ -400,8 +401,6 @@ public class createGUI implements Observer {
 		//end 
 */
 
-		
-		
 		
 		
 	//hh	
