@@ -49,32 +49,33 @@ public class createGUI implements Observer {
 		
 		
 		if(m.winningState() == true) {
-			JFrame frame = new JFrame("Game Won");
-			frame.setLocation(450, 250);
+			JFrame win= new JFrame("Game Won");
+			win.setLocation(450, 250);
 			
 			if(m.getNumRed() == 0) {
-			JLabel red = new JLabel("Red Wins");
-			frame.add(red);
-			  frame.setDefaultCloseOperation
-			         (JFrame.DISPOSE_ON_CLOSE);
-			  frame.pack();
-			  
-			  frame.setVisible(true);
+				ImageIcon icon = new ImageIcon("src/red.jpg");
+				JLabel label = new JLabel(icon);
+				
+				win.add(label);
+				  win.setDefaultCloseOperation
+				         (JFrame.DISPOSE_ON_CLOSE);
+				  win.pack();
 			}
 			else {
-				JLabel blue = new JLabel("Blue Wins");
-				frame.add(blue);
-				  frame.setDefaultCloseOperation
+				ImageIcon icon = new ImageIcon("src/blue.jpg");
+				JLabel label = new JLabel(icon);
+				
+				win.add(label);
+				  win.setDefaultCloseOperation
 				         (JFrame.DISPOSE_ON_CLOSE);
-				  frame.pack();
-				  
-				  frame.setVisible(true);
+				  win.pack();
 			}
 			
 			
 			
 
 		}
+
 	
 
 		JMenuBar menuBar = new JMenuBar();
