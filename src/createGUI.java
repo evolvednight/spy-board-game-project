@@ -107,6 +107,10 @@ public class createGUI implements Observer {
 		JPanel panelBottom = new JPanel(new GridLayout(5,5));
 		JLabel labelCode = new JLabel();
 		JLabel labelNumber = new JLabel();
+		labelCode.setText("Hint: ");
+		labelNumber.setText("Number: ");
+		labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
+		labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
 		
 		
 		
@@ -378,6 +382,12 @@ public class createGUI implements Observer {
 		tend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent t) {
 				ssr.changeTurn();
+				labelCode.setText("Hint: ");
+				labelNumber.setText("Number: ");
+				//labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
+				//labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
+
+				
 			}
 		});
 		
