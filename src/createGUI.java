@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,11 +22,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+
+import com.sun.javafx.tk.Toolkit;
 
 import javafx.scene.control.ToggleButton;
 
 @SuppressWarnings("unused")
 public class createGUI implements Observer {
+	private JFrame aliasx2;
 	private int clueCount;
 	board ssr = new board();
 	int xx =ssr.getTurn() ;
@@ -81,8 +88,10 @@ public class createGUI implements Observer {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File"); 
 		JMenuItem item = new JMenuItem("start");
+		JMenuItem exit = new JMenuItem("exit");
 		menuBar.add(menu);
 		menu.add(item);
+		menu.add(exit);
 		
 		
 		
@@ -96,6 +105,19 @@ public class createGUI implements Observer {
 		JPanel panelBottom = new JPanel(new GridLayout(5,5));
 		JLabel labelCode = new JLabel();
 		JLabel labelNumber = new JLabel();
+		
+		
+		
+		
+		ActionListener exit2 = new ActionListener() {//menu exit
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				x1.dispose();
+				aliasx2.dispose();	
+			}
+		}
+		;
+		exit.addActionListener(exit2);
 		
 		
 		
@@ -159,6 +181,7 @@ public class createGUI implements Observer {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				JFrame x2 = new JFrame("Spy Master Window");
+				aliasx2 = x2;
 				JPanel panelRight = new JPanel();
 //				panelRight.setLayout(new GridLayout(0,1));
 				JPanel panelLeft = new JPanel();
@@ -171,6 +194,57 @@ public class createGUI implements Observer {
 				
 				JTextField textField= new JTextField("Input Clue" ,20);
 				JTextField numField = new JTextField("Input number", 20);
+				if(textField.getText().equals("Input Clue")) {
+				textField.setForeground(Color.LIGHT_GRAY);
+				}
+				if(numField.getText().equals("Input number")) {
+				numField.setForeground(Color.LIGHT_GRAY);
+				}
+				
+				
+				
+				
+				FocusListener ghost1 = new FocusListener(){
+					@Override
+					public void focusGained(FocusEvent e) {
+						textField.setText("");
+						textField.setForeground(Color.black);
+					}
+					@Override
+					public void focusLost(FocusEvent e) {
+						if(textField.getText().equals("")) {
+							textField.setText("Input Clue");
+							textField.setForeground(Color.LIGHT_GRAY);
+							
+						}
+						
+					 }	
+				    }
+				;
+				
+				FocusListener ghost2 = new FocusListener(){
+					@Override
+					public void focusGained(FocusEvent e) {
+						numField.setText("");
+						numField.setForeground(Color.black);
+					}
+					@Override
+					public void focusLost(FocusEvent e) {
+						if(numField.getText().equals("")) {
+							numField.setText("Input number");
+							numField.setForeground(Color.LIGHT_GRAY);
+						}
+					 }	
+				    }
+				;
+				
+			textField.addFocusListener(ghost1);
+			numField.addFocusListener(ghost2);
+				
+				
+				
+				
+				
 				jb.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String input = textField.getText();
@@ -180,8 +254,10 @@ public class createGUI implements Observer {
 
 							label1.setText(input);
 							label2.setText(numField.getText());
-							labelCode.setText(input);
-							labelNumber.setText(numField.getText());
+							labelCode.setText("Hint: "+ input);
+							labelNumber.setText("Number: "+ numField.getText());
+							labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
+							labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
 							
 							
 							if(input.equalsIgnoreCase("hertz")) {
@@ -198,7 +274,26 @@ public class createGUI implements Observer {
 								  frame.setVisible(true);
 							}
 							
-						}
+							if(input.equalsIgnoreCase("AustinsJeep")) {
+							JFrame f = new JFrame(); 
+
+
+					        ImageIcon image = new ImageIcon("src/img.jpg"); //imports the image
+
+					        JLabel lbl = new JLabel(image); //puts the image into a jlabel
+
+					        f.getContentPane().add(lbl); //puts label inside the jframe
+
+					        f.setSize(image.getIconWidth(), image.getIconHeight()); //gets h and w of image and sets jframe to the size
+
+					 
+					        f.setLocation(450, 250); //sets the location of the jframe
+					        f.setVisible(true); //makes the jframe visible
+							}
+					    }
+					
+				
+						
 						else if(m.Legality(input) && !m.legalityNum(x)) {
 							label1.setText("Invalid code or number");
 						}
