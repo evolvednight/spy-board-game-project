@@ -226,6 +226,7 @@ public class createGUI implements Observer {
 						String input = textField.getText();
 						int x = Integer.parseInt(numField.getText());
 						clueCount = x;
+						x2.dispose();
 						if ( m.Legality(input) == true && m.legalityNum(x)) {
 
 							label1.setText(input);
