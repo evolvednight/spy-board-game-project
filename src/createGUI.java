@@ -251,11 +251,14 @@ public class createGUI implements Observer {
 						}
 
 						else if (m.Legality(input) && !m.legalityNum(x)) {
-							label1.setText("Invalid code or number");
+							labelCode.setText("Hint: " + input);
+							labelNumber.setText("Number: Invalid Number");
 						} else if (!m.Legality(input) && m.legalityNum(x)) {
-							label1.setText("Invalid code or number");
+							labelCode.setText("Hint: Invalid Hint");
+							labelNumber.setText("Number: " + clueCount);
 						} else {
-							label1.setText("Invalid code or number");
+							labelNumber.setText("Number: Invalid Number");
+							labelCode.setText("Hint: Invalid Hint");
 						}
 
 					}
