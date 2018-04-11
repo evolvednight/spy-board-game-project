@@ -14,6 +14,7 @@ public board() {
 //allLocations.add(new Location(true, "Test", "Red"));
 //	Assigning test = new Assigning();
 //	test.gameStart();
+	//hh
 
 	
 }
