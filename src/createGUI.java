@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,9 +24,10 @@ import javafx.scene.control.ToggleButton;
 
 @SuppressWarnings("unused")
 public class createGUI implements Observer {
-	
+	private static int counter = 0;
 	
 	public static void main(String[] args) {
+		
 		main m = new main();
 //		ActionListner r = new ActionListner();
 //		board b = new board();
@@ -33,6 +35,37 @@ public class createGUI implements Observer {
 //		System.out.println(m.codeNamesOnBoard);
 //		System.out.println(b.allLocations);
 //		System.out.println(b.tempArr);
+		
+		
+		
+		if(m.winningState() == true) {
+			JFrame frame = new JFrame("Game Won");
+			frame.setLocation(450, 250);
+			
+			if(m.getNumRed() == 0) {
+			JLabel red = new JLabel("Red Wins");
+			frame.add(red);
+			  frame.setDefaultCloseOperation
+			         (JFrame.DISPOSE_ON_CLOSE);
+			  frame.pack();
+			  
+			  frame.setVisible(true);
+			}
+			else {
+				JLabel blue = new JLabel("Blue Wins");
+				frame.add(blue);
+				  frame.setDefaultCloseOperation
+				         (JFrame.DISPOSE_ON_CLOSE);
+				  frame.pack();
+				  
+				  frame.setVisible(true);
+			}
+			
+			
+			
+
+		}
+	
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu(); 
@@ -70,6 +103,43 @@ public class createGUI implements Observer {
 		panelTop.add(restart);
 		
 		
+//		//Easter Egg
+//	
+//		//JButton easterEgg = new JButton();
+//	//	x1.add(easterEgg);
+//		//easterEgg.setOpaque(false);
+//		//easterEgg.setContentAreaFilled(false);
+//		//easterEgg.setBorderPainted(false);
+//		
+//		ActionListener egg = new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				counter = counter + 1;
+//				if(counter == 5) {
+//				JFrame frame = new JFrame("EasterEgg");
+//				frame.setLocation(450, 250);
+//				ImageIcon icon = new ImageIcon("src/hertz.jpg");
+//				JLabel label = new JLabel(icon);
+//				
+//				frame.add(label);
+//				  frame.setDefaultCloseOperation
+//				         (JFrame.DISPOSE_ON_CLOSE);
+//				  frame.pack();
+//				  
+//				  frame.setVisible(true);
+//				  x1.getContentPane().setBackground(Color.black);
+//				//  easterEgg.setText("EasterEgg Unlocked");
+//				//  easterEgg.setForeground(Color.WHITE);
+//				}
+//				  
+//			  }	
+//		    }
+//		;
+		
+	//easterEgg.addActionListener(egg);
+
+		
 		
 		JButton Spy = new JButton( "Spy Master");
 		Spy.addActionListener(new ActionListener() {
@@ -104,6 +174,22 @@ public class createGUI implements Observer {
 							label2.setText(numField.getText());
 							labelCode.setText(input);
 							labelNumber.setText(numField.getText());
+							
+							
+							if(input.equalsIgnoreCase("hertz")) {
+								JFrame frame = new JFrame("EasterEgg");
+								frame.setLocation(450, 250);
+								ImageIcon icon = new ImageIcon("src/hertz.jpg");
+								JLabel label = new JLabel(icon);
+								
+								frame.add(label);
+								  frame.setDefaultCloseOperation
+								         (JFrame.DISPOSE_ON_CLOSE);
+								  frame.pack();
+								  
+								  frame.setVisible(true);
+							}
+							
 						}
 						else if(m.Legality(input) && !m.legalityNum(x)) {
 							label1.setText("Invalid code or number");
@@ -137,15 +223,20 @@ public class createGUI implements Observer {
 					JButton j = new JButton(temp);
 					if(m.allLocations.get(i).getTeam() == "Red") {
 						j.setBackground(Color.RED);
+						
+						
 					}
 					else if( m.allLocations.get(i).getTeam() == "Blue") {
 						j.setBackground(Color.BLUE);
+						
 					}
 					else if ( m.allLocations.get(i).getTeam() == "Bystander") {
 						j.setBackground(Color.YELLOW);
+				
 					}
 					else if ( m.allLocations.get(i).getTeam() == "Assassin") {
 						j.setBackground(Color.GREEN);
+						
 					}
 					panelLeft.add(j);
 					x2.add(panelLeft);
@@ -170,11 +261,10 @@ public class createGUI implements Observer {
 
 
 
-		//easter egg field
-		JTextArea easterEgg = new JTextArea();
-		easterEgg.setText("**MAYBE** put easterEgg here");
-		panelTop.add(easterEgg);
+		
+		
 		//instruction here
+		
 		JTextArea instruction = new JTextArea();
 		instruction.setText("this is a game of codeName which model after the codename board game");
 		panelTop.add(instruction);
@@ -212,6 +302,9 @@ public class createGUI implements Observer {
 		x1.add(panelBottom);
 		x1.setVisible(true);
 	}
+	
+	
+	
 
 	@Override
 	public void update(Observable arg0, Object arg1) {

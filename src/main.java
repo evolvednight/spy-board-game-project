@@ -49,9 +49,17 @@ public class main extends board{
 	public void setNumBlue(int y ) {
 		numBlue = y;
 	}
+	
+	public int getNumRed() {
+		return numRed;
+	}
+	
+	public int getNumBlue() {
+		return numBlue;
+	}
 
 	/**
-	 * Returns true if the current selection is one of the current team’s agent
+	 * Returns true if the current selection is one of the current teamï¿½s agent
 	 * this method decrement the count of each team when the codename was selected
 	 *
 	 *@author Edwin Hung
