@@ -250,9 +250,10 @@ public class main extends board{
 	 *
 	 */ 
 	public void gameStart() {
+		setNumRed(9);
+		setNumBlue(8);
 		String filename = "src/GameWords1.txt";
 		ArrayList<String>allCodeNames = new ArrayList<>();
-
 		try {
 			for(String codename : Files.readAllLines(Paths.get(filename))) {	//reads file to get all codenames
 				allCodeNames.add(codename);
@@ -292,6 +293,7 @@ public class main extends board{
 
 
 		allLocations = tempArr;
+		
 //		for(int i = 0; i<25; i++) {
 //			System.out.print(allLocations.get(i).getTeam());
 		}
@@ -312,7 +314,6 @@ public class main extends board{
 		return codeNamesOnBoard;
 		
 	}
-	
 
 
 

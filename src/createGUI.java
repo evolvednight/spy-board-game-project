@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -93,6 +94,8 @@ public class createGUI implements Observer {
 		JLabel labelCode = new JLabel();
 		JLabel labelNumber = new JLabel();
 		
+		
+		
 		JButton restart = new JButton("Restart");
 		
 		restart.addActionListener(new ActionListener() {
@@ -161,7 +164,7 @@ public class createGUI implements Observer {
 				JLabel label2 = new JLabel();
 				JButton jb = new JButton("Enter");
 				
-				
+				System.out.println(m.getNumRed());
 				
 				JTextField textField= new JTextField("Input Clue" ,20);
 				JTextField numField = new JTextField("Input number", 20);
@@ -219,7 +222,7 @@ public class createGUI implements Observer {
 				GridLayout inY = new GridLayout(0,2);
 				x2.setLayout(inY);
 				for( int i = 0; i<25 ; i++) {
-					String temp = m.codeNamesOnBoard.get(i);
+					String temp = m.allLocations.get(i).getCodeName();
 					JButton j = new JButton(temp);
 					if(m.allLocations.get(i).getTeam() == "Red") {
 						j.setBackground(Color.RED);
@@ -265,17 +268,19 @@ public class createGUI implements Observer {
 		
 		//instruction here
 		
-		JTextArea instruction = new JTextArea();
-		instruction.setText("this is a game of codeName which model after the codename board game");
-		panelTop.add(instruction);
+		JLabel redScore = new JLabel("Red Team Points: " + m.getNumRed());
+		redScore.setForeground(Color.red);
+		redScore.setFont(new Font("Serif", Font.PLAIN, 40));
+		panelTop.add(redScore);
 
-		JTextArea instruction2 = new JTextArea();
-		instruction2.setText("More Instructions");
-		panelTop.add(instruction2);
+		JLabel blueScore = new JLabel("Blue Team Points: " + m.getNumBlue());
+		blueScore.setForeground(Color.blue);
+		blueScore.setFont(new Font("Serif", Font.PLAIN, 40));
+		panelTop.add(blueScore);
 
-		JTextArea countField = new JTextArea();
-		countField.setText("this field is for red and blue counter");
-		panelTop.add(countField); 
+//		JTextArea countField = new JTextArea();
+//		countField.setText("this field is for red and blue counter");
+//		panelTop.add(countField); 
 
 	/*	//hasan
 		JTextArea clueAndCount = new JTextArea() ;
@@ -303,25 +308,25 @@ public class createGUI implements Observer {
 		panelBottom.add(j);
 		j.addActionListener(new ActionListener( ) {
 			public void actionPerformed(ActionEvent E) {
-			j.setText(team);
+//			j.setText(team);
 			
 				
 				if(team == "Red") {
 					if(xx != 1) { ssr.changeTurn();}
-					j.setBackground(Color.red);
+					j.setForeground(Color.red);
 				}
 				else if(team == "Blue") {
 					if(xx != 0) { ssr.changeTurn();}
-					j.setBackground(Color.BLUE);
+					j.setForeground(Color.blue);
 					
 				}
 				else if ( team == "Bystander") {
-					j.setBackground(Color.YELLOW);
+					j.setForeground(Color.yellow);
 					ssr.changeTurn();
 					
 				}
 				else if ( team == "Assassin") {
-					j.setBackground(Color.GREEN);
+					j.setForeground(Color.green);
 				}
 			}
 		});
