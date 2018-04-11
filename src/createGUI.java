@@ -275,32 +275,62 @@ public class createGUI implements Observer {
 		countField.setText("this field is for red and blue counter");
 		panelTop.add(countField); 
 
-		//hasan
+	/*	//hasan
 		JTextArea clueAndCount = new JTextArea() ;
 		String x = "set equal to clue getter, " ;//need getters
 		String g = "set equal to number of cards the clue applies to" ;//need getters
 		clueAndCount.setText(x + g);
 		panelTop.add(clueAndCount);
 		//end 
+*/
 
-
 		
 		
 		
+		
+		
+		board ssr = new board();
+		int xx =ssr.getTurn() ;
 		
 		for( int i = 0; i<25 ; i++) {
-			String temp = m.codeNamesOnBoard.get(i);
+			String temp = m.allLocations.get(i).getCodeName();
 			JButton j = new JButton(temp);
-
+			String team = m.allLocations.get(i).getTeam() ;
+			
 			
 		panelBottom.add(j);
+		j.addActionListener(new ActionListener( ) {
+			public void actionPerformed(ActionEvent E) {
+			j.setText(team);
+			
+				
+				if(team == "Red") {
+					if(xx != 1) { ssr.changeTurn();}
+					j.setBackground(Color.red);
+				}
+				else if(team == "Blue") {
+					if(xx != 0) { ssr.changeTurn();}
+					j.setBackground(Color.BLUE);
+					
+				}
+				else if ( team == "Bystander") {
+					j.setBackground(Color.YELLOW);
+					ssr.changeTurn();
+					
+				}
+				else if ( team == "Assassin") {
+					j.setBackground(Color.GREEN);
+				}
+			}
+		});
+		
+		
 		
 		}
 		x1.add(panelTop);
 		x1.add(panelBottom);
 		x1.setVisible(true);
 	}
-	
 	
 	
 
