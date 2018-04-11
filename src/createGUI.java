@@ -85,11 +85,22 @@ public class createGUI implements Observer {
 		menu.add(exit);
 		
 		
+		JMenuBar menuBar2 = new JMenuBar();
+		JMenu menu2 = new JMenu("File"); 
+		JMenuItem exit2 = new JMenuItem("Exit Spymaster");
+		menuBar2.add(menu2);
+		menu2.add(exit2);
+		
+		
 		
 		JFrame x1 = new JFrame("CodeName game");
 		x1.setJMenuBar(menuBar);
 		x1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		x1.setSize(1000,1000);
+	//	x1.setSize(1000,1000);
+		x1.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		x1.setUndecorated(true);
+		x1.setVisible(true);
+
 		GridLayout inX = new GridLayout(2,2);
 		x1.setLayout(inX);
 		JPanel panelTop = new JPanel(new GridLayout(6,6));
@@ -100,7 +111,7 @@ public class createGUI implements Observer {
 		
 		
 		
-		ActionListener exit2 = new ActionListener() {//menu exit
+		ActionListener exit3 = new ActionListener() {//menu exit
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				x1.dispose();
@@ -108,8 +119,17 @@ public class createGUI implements Observer {
 			}
 		}
 		;
-		exit.addActionListener(exit2);
+		exit.addActionListener(exit3);
 		
+		
+		ActionListener exit4 = new ActionListener() {//menu exit
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				aliasx2.dispose();	
+			}
+		}
+		;
+		exit2.addActionListener(exit4);
 		
 		
 		
@@ -164,6 +184,7 @@ public class createGUI implements Observer {
 				JLabel label1 = new JLabel();
 				JLabel label2 = new JLabel();
 				JButton jb = new JButton("Enter");
+				
 				
 				System.out.println(m.getNumRed());
 				
@@ -302,8 +323,9 @@ public class createGUI implements Observer {
 				
 				
 				
-				
-				x2.setSize(750, 750);
+				x2.setJMenuBar(menuBar2);
+				//x2.setSize(750, 750);
+			
 				GridLayout inY = new GridLayout(0,2);
 				x2.setLayout(inY);
 				for( int i = 0; i<25 ; i++) {
@@ -329,7 +351,9 @@ public class createGUI implements Observer {
 					x2.add(panelLeft);
 
 				}
-				
+				x2.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				x2.setUndecorated(true);
+				x2.setVisible(true);
 			
 				x2.setVisible(true);
 			}
