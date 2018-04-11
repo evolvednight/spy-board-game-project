@@ -350,7 +350,7 @@ public class createGUI implements Observer {
 		});
 		
 		
-		
+		//ll
 		}
 		x1.add(panelTop);
 		x1.add(panelBottom);
