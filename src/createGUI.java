@@ -24,9 +24,16 @@ import javafx.scene.control.ToggleButton;
 
 @SuppressWarnings("unused")
 public class createGUI implements Observer {
-	private static int counter = 0;
 	
-	public static void main(String[] args) {
+	public createGUI() {
+		restart();
+	}
+	public void restart() {
+		MakeGui();
+	}
+	
+	
+	public void MakeGui() {
 		
 		main m = new main();
 //		ActionListner r = new ActionListner();
@@ -89,14 +96,13 @@ public class createGUI implements Observer {
 		
 		restart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main s = new main();
-				s.gameStart();
-				JFrame x3 = new JFrame("CodeName game");
-				
-				x1.setVisible(false);
-				x3 = x1;
-				x3.setVisible(true);
-				
+
+				if (e.getSource() == restart) {
+					x1.getContentPane().removeAll();
+					x1.dispose();
+				restart();
+
+				}
 			}
 		});
 		
@@ -153,14 +159,8 @@ public class createGUI implements Observer {
 				JLabel label1 = new JLabel();
 				JLabel label2 = new JLabel();
 				JButton jb = new JButton("Enter");
-				JButton red = new JButton("Red");
-				JButton blue = new JButton("Blue");
 				
-				 red.addActionListener(new ActionListener() {
-					 public void actionPerformed(ActionEvent e) {
-						red.setEnabled(true);;
-					 }
-				 });
+				
 				
 				JTextField textField= new JTextField("Input Clue" ,20);
 				JTextField numField = new JTextField("Input number", 20);
@@ -205,8 +205,6 @@ public class createGUI implements Observer {
 					
 				});
 //				notifyObserver();
-				panelRight.add(red);
-				panelRight.add(blue);
 				panelRight.add(jb);
 				panelRight.add(textField);
 				panelRight.add(numField);
