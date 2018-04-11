@@ -24,7 +24,7 @@ import javafx.scene.control.ToggleButton;
 
 @SuppressWarnings("unused")
 public class createGUI implements Observer {
-	
+	private int clueCount;
 	public createGUI() {
 		restart();
 	}
@@ -169,6 +169,7 @@ public class createGUI implements Observer {
 					public void actionPerformed(ActionEvent e) {
 						String input = textField.getText();
 						int x = Integer.parseInt(numField.getText());
+						clueCount = x;
 						if ( m.Legality(input) == true && m.legalityNum(x)) {
 
 							label1.setText(input);
