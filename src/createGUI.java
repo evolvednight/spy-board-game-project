@@ -393,13 +393,16 @@ public class createGUI implements Observer {
 							clueCount = 0;
 						}
 						j.setForeground(Color.red);
+						m.setNumRed(m.getNumRed()-1);
+						redScore.setText("Red Team Points: " + m.getNumRed());
 					} else if (team == "Blue") {
 						if (xx != 0 && turnOver == false) {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
 						j.setForeground(Color.blue);
-
+						m.setNumBlue(m.getNumBlue()-1);
+						blueScore.setText("Blue Team Points: " + m.getNumBlue());
 					} else if (team == "Bystander") {
 						j.setForeground(Color.yellow);
 						if (turnOver == false) {
