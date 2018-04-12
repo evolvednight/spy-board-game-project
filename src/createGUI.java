@@ -107,7 +107,9 @@ public class createGUI implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				x1.dispose();
+				if(aliasx2 != null) {
 				aliasx2.dispose();
+				}
 			}
 		};
 		exit.addActionListener(exit3);
@@ -138,6 +140,9 @@ public class createGUI implements Observer {
 				if (e.getSource() == restart) {
 					x1.getContentPane().removeAll();
 					x1.dispose();
+					if (aliasx2 != null) {
+						aliasx2.dispose();	//dispose spymaster frame when restart to avoid old spymaster fields
+					}
 					restart();
 
 				}
@@ -211,10 +216,11 @@ public class createGUI implements Observer {
 							int x = Integer.parseInt(numField.getText());
 							clueCount = x;
 							} catch (NumberFormatException a) {
-								label1.setText("Not a number Please enter again");
+								label1.setText("Invalid number");
 							}
 						if (m.Legality(input) == true && m.legalityNum(clueCount)) {
-							x2.dispose(); // must check the legality, then dispose the spymaster frame
+
+							x2.dispose();  // must check legality before disposing the spymaster frame
 							label1.setText(input);
 							label2.setText(numField.getText());
 							labelCode.setText("Hint: " + input);
@@ -296,14 +302,14 @@ public class createGUI implements Observer {
 
 					}
 					panelLeft.add(j);
-					
+
 				}
 				x2.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				x2.setUndecorated(true);
 				x2.setVisible(true);
 				x2.getContentPane().add(panelRight, BorderLayout.EAST);
 				x2.add(panelLeft);
-
+				
 				x2.setVisible(true);
 			}
 		});
