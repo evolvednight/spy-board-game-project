@@ -160,7 +160,6 @@ public class createGUI implements Observer {
 				JLabel label2 = new JLabel();
 				JButton jb = new JButton("Enter");
 
-				System.out.println(m.getNumRed());
 
 				JTextField textField = new JTextField("Input Clue", 20);
 				JTextField numField = new JTextField("Input number", 20);
@@ -208,11 +207,14 @@ public class createGUI implements Observer {
 				jb.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String input = textField.getText();
-						int x = Integer.parseInt(numField.getText());
-						clueCount = x;
-						x2.dispose();
-						if (m.Legality(input) == true && m.legalityNum(x)) {
-
+						try {
+							int x = Integer.parseInt(numField.getText());
+							clueCount = x;
+							} catch (NumberFormatException a) {
+								label1.setText("Not a number Please enter again");
+							}
+						if (m.Legality(input) == true && m.legalityNum(clueCount)) {
+							x2.dispose(); // must check the legality, then dispose the spymaster frame
 							label1.setText(input);
 							label2.setText(numField.getText());
 							labelCode.setText("Hint: " + input);
@@ -250,10 +252,10 @@ public class createGUI implements Observer {
 							}
 						}
 
-						else if (m.Legality(input) && !m.legalityNum(x)) {
+						else if (m.Legality(input) && !m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: " + input);
 							labelNumber.setText("Number: Invalid Number");
-						} else if (!m.Legality(input) && m.legalityNum(x)) {
+						} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: Invalid Hint");
 							labelNumber.setText("Number: " + clueCount);
 						} else {
@@ -271,8 +273,7 @@ public class createGUI implements Observer {
 				panelRight.add(numField);
 				panelRight.add(label1);
 				panelRight.add(label2);
-				x2.getContentPane().add(panelRight, BorderLayout.EAST);
-
+				
 				x2.setJMenuBar(menuBar2);
 				// x2.setSize(750, 750);
 
@@ -295,12 +296,13 @@ public class createGUI implements Observer {
 
 					}
 					panelLeft.add(j);
-					x2.add(panelLeft);
-
+					
 				}
 				x2.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				x2.setUndecorated(true);
 				x2.setVisible(true);
+				x2.getContentPane().add(panelRight, BorderLayout.EAST);
+				x2.add(panelLeft);
 
 				x2.setVisible(true);
 			}
