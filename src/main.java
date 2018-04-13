@@ -131,24 +131,30 @@ public class main extends board{
 		gameStart();
 		String x = clue.toLowerCase();//Turns clue into Lowercase
 		String y = clue.toUpperCase();//Turns clue into Uppercase
-
+		int b;
+ArrayList<String> test = new ArrayList<String>();
+   
 		if(clue.contains(" ")) { //if clue contains a space its invalid
 			return false;
 		}
 
-		for( int i = 0 ; i< allLocations.size(); i++) {
-			//System.out.println(allLocations.get(i));
-			if(allLocations.get(i).getCodeName().equals(x) && allLocations.get(i).getVisibility() == false) {
+		for( b = 0 ; b< allLocations.size(); b++) {
+		
+			test.add(allLocations.get(b).getCodeName());
+			
+		}
+			if(x.equals(allLocations.get(b).getCodeName()) && allLocations.get(b).getVisibility() == false) {
 				return false;
 			}
-			else if(allLocations.get(i).getCodeName().equals(y)&& allLocations.get(i).getVisibility() == false){
+			else if(y.equals(allLocations.get(b).getCodeName()) && allLocations.get(b).getVisibility() == false){
 				return false;
 			}
+			return true;
 		}// if clue is the same as a codename but has not been revealed its invalid 
 
-		return true;
+		
 
-	}
+	
 	public boolean legalityNum(int x) {
 		if( x > 0 && x <= 9) {
 			return true;

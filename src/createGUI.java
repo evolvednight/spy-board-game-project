@@ -35,7 +35,7 @@ public class createGUI implements Observer {
 	private int clueCount;
 	board ssr = new board();
 	int xx = ssr.getTurn();
-
+     private String x;
 	public createGUI() {
 		restart();
 	}
@@ -242,7 +242,7 @@ public class createGUI implements Observer {
 						else if (m.Legality(input) && !m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: " + input);
 							labelNumber.setText("Number: Invalid Number");
-						} else if (m.Legality(input) == false && m.legalityNum(clueCount)) {
+						} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: Invalid Hint");
 							labelNumber.setText("Number: " + clueCount);
 						} else {
