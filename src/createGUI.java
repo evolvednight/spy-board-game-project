@@ -34,7 +34,6 @@ public class createGUI implements Observer {
 	private JFrame aliasx2;
 	private int clueCount;
 	board ssr = new board();
-	int xx = ssr.getTurn();
 	private JFrame win;  // declare win frame so You can dispose it in restart button
    
 	public createGUI() {
@@ -317,18 +316,10 @@ public class createGUI implements Observer {
 		});
 
 		JLabel disturn = new JLabel();
-		if (xx == 1) {
 			disturn.setText("Turn : Team Red");
 			disturn.setForeground(Color.red);
 			disturn.setFont(new Font("Serif", Font.PLAIN, 40));
-		}
 
-		if (xx == 0) {
-			disturn.setText("Turn : Team Blue");
-			disturn.setForeground(Color.blue);
-			disturn.setFont(new Font("Serif", Font.PLAIN, 40));
-
-		}
 		panelTop.add(disturn);
 
 		// instruction here
@@ -365,7 +356,9 @@ public class createGUI implements Observer {
 			j.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent E) {
 					boolean turnOver = false;
+					if (clueCount != 0) {
 					clueCount = clueCount - 1;
+					}
 					j.setMultiClickThreshhold(1000000000);
 					
 					if (clueCount == 0) {
@@ -375,7 +368,7 @@ public class createGUI implements Observer {
 					}
 
 					if (team == "Red") {
-						if (xx != 1 && turnOver == false) {
+						if (ssr.getTurn() != 1 && turnOver == false) {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
@@ -396,7 +389,7 @@ public class createGUI implements Observer {
 							win.setVisible(true);
 						}
 					} else if (team == "Blue") {
-						if (xx != 0 && turnOver == false) {
+						if (ssr.getTurn() != 0 && turnOver == false) {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
@@ -427,7 +420,7 @@ public class createGUI implements Observer {
 
 					} else if (team == "Assassin") {
 						j.setForeground(Color.green);
-						if(xx != 0) {
+						if(ssr.getTurn() != 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
@@ -438,7 +431,7 @@ public class createGUI implements Observer {
 							win.pack();
 							win.setVisible(true);
 						
-							if(xx != 1) {
+							if(ssr.getTurn() != 1) {
 								JFrame q = new JFrame("Game Won");
 								q.setLocation(450, 250);
 								ImageIcon w = new ImageIcon("src/red.jpg");
@@ -453,6 +446,16 @@ public class createGUI implements Observer {
 						}
 					}
 					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
+					if (ssr.getTurn() == 1) {				
+						disturn.setText("Turn : Team Red");
+						disturn.setForeground(Color.red);
+					}
+
+					if (ssr.getTurn() == 0) {
+						disturn.setText("Turn : Team Blue");
+						disturn.setForeground(Color.blue);
+
+					}
 				}
 			});
 
