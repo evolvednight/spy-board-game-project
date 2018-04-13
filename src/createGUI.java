@@ -135,168 +135,175 @@ public class createGUI implements Observer {
 
 		panelTop.add(restart);
 
+		JFrame x2 = new JFrame("Spy Master Window");
+		aliasx2 = x2;
+		JPanel panelRight = new JPanel();
+		// panelRight.setLayout(new GridLayout(0,1));
+		JPanel panelLeft = new JPanel();
+		panelLeft.setLayout(new GridLayout(5, 5));
+		JLabel label1 = new JLabel();
+		JLabel label2 = new JLabel();
+		JButton jb = new JButton("Enter");
+
+
+		JTextField textField = new JTextField("Input Clue", 20);
+		JTextField numField = new JTextField("Input number", 20);
+		if (textField.getText().equals("Input Clue")) {
+			textField.setForeground(Color.LIGHT_GRAY);
+		}
+		if (numField.getText().equals("Input number")) {
+			numField.setForeground(Color.LIGHT_GRAY);
+		}
+
+		FocusListener ghost1 = new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textField.setText("");
+				textField.setForeground(Color.black);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().equals("")) {
+					textField.setText("Input Clue");
+					textField.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		};
+
+		FocusListener ghost2 = new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				numField.setText("");
+				numField.setForeground(Color.black);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (numField.getText().equals("")) {
+					numField.setText("Input number");
+					numField.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		};
+		textField.addFocusListener(ghost1);
+		numField.addFocusListener(ghost2);
+
+		jb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String input = textField.getText();
+				try {
+					int x = Integer.parseInt(numField.getText());
+					clueCount = x;
+					} catch (NumberFormatException a) {
+						label1.setText("Invalid clue or number Please enter again!");
+					}
+				if (m.Legality(input) == true && m.legalityNum(clueCount)) {
+					textField.setText("Input Clue");
+					textField.setForeground(Color.LIGHT_GRAY);
+					numField.setText("Input number");
+					numField.setForeground(Color.LIGHT_GRAY);
+
+					x2.setVisible(false);  // must check legality before disposing the spymaster frame
+					label1.setText(input);
+					label2.setText(numField.getText());
+					labelCode.setText("Hint: " + input);
+					labelNumber.setText("Number: " + clueCount);
+					labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
+					labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
+
+					if (input.equalsIgnoreCase("hertz")) {
+						JFrame frame = new JFrame("EasterEgg");
+						frame.setLocation(450, 250);
+						ImageIcon icon = new ImageIcon("src/hertz.jpg");
+						JLabel label = new JLabel(icon);
+
+						frame.add(label);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						frame.pack();
+
+						frame.setVisible(true);
+					}
+
+					if (input.equalsIgnoreCase("testingegg")) {
+						JFrame f = new JFrame();
+
+						ImageIcon image = new ImageIcon("src/img.jpg"); // imports the image
+
+						JLabel lbl = new JLabel(image); // puts the image into a jlabel
+
+						f.getContentPane().add(lbl); // puts label inside the jframe
+
+						f.setSize(image.getIconWidth(), image.getIconHeight()); // gets h and w of image and
+																				// sets jframe to the size
+
+						f.setLocation(150, 250); // sets the location of the jframe
+						f.setVisible(true); // makes the jframe visible
+					}
+				}
+
+				else if (m.Legality(input) && !m.legalityNum(clueCount)) {
+					labelCode.setText("Hint: " + input);
+					labelNumber.setText("Number: Invalid Number");
+				} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
+					labelCode.setText("Hint: Invalid Hint");
+					labelNumber.setText("Number: " + clueCount);
+				} else {
+					labelNumber.setText("Number: Invalid Number");
+					labelCode.setText("Hint: Invalid Hint");
+				}
+
+			}
+
+		});
+
+		// notifyObserver();
+		panelRight.add(jb);
+		panelRight.add(textField);
+		panelRight.add(numField);
+		panelRight.add(label1);
+		panelRight.add(label2);
+		
+		x2.setJMenuBar(menuBar2);
+		// x2.setSize(750, 750);
+
+		GridLayout inY = new GridLayout(0, 2);
+		x2.setLayout(inY);
+		for (int i = 0; i < 25; i++) {
+			String temp = m.allLocations.get(i).getCodeName();
+			JButton j = new JButton(temp);
+			if (m.allLocations.get(i).getTeam() == "Red") {
+				j.setForeground(Color.RED);
+
+			} else if (m.allLocations.get(i).getTeam() == "Blue") {
+				j.setForeground(Color.BLUE);
+
+			} else if (m.allLocations.get(i).getTeam() == "Bystander") {
+				j.setForeground(Color.YELLOW);
+
+			} else if (m.allLocations.get(i).getTeam() == "Assassin") {
+				j.setForeground(Color.GREEN);
+
+			}
+			panelLeft.add(j);
+
+		}
+		x2.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		x2.setUndecorated(true);
+		x2.setVisible(true);
+		x2.getContentPane().add(panelRight, BorderLayout.EAST);
+		x2.add(panelLeft);
+		
+		x2.setVisible(false);
+
+
 		JButton Spy = new JButton("Spy Master");
 		Spy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				JFrame x2 = new JFrame("Spy Master Window");
-				aliasx2 = x2;
-				JPanel panelRight = new JPanel();
-				// panelRight.setLayout(new GridLayout(0,1));
-				JPanel panelLeft = new JPanel();
-				panelLeft.setLayout(new GridLayout(5, 5));
-				JLabel label1 = new JLabel();
-				JLabel label2 = new JLabel();
-				JButton jb = new JButton("Enter");
-
-
-				JTextField textField = new JTextField("Input Clue", 20);
-				JTextField numField = new JTextField("Input number", 20);
-				if (textField.getText().equals("Input Clue")) {
-					textField.setForeground(Color.LIGHT_GRAY);
-				}
-				if (numField.getText().equals("Input number")) {
-					numField.setForeground(Color.LIGHT_GRAY);
-				}
-
-				FocusListener ghost1 = new FocusListener() {
-					@Override
-					public void focusGained(FocusEvent e) {
-						textField.setText("");
-						textField.setForeground(Color.black);
-					}
-
-					@Override
-					public void focusLost(FocusEvent e) {
-						if (textField.getText().equals("")) {
-							textField.setText("Input Clue");
-							textField.setForeground(Color.LIGHT_GRAY);
-						}
-					}
-				};
-
-				FocusListener ghost2 = new FocusListener() {
-					@Override
-					public void focusGained(FocusEvent e) {
-						numField.setText("");
-						numField.setForeground(Color.black);
-					}
-
-					@Override
-					public void focusLost(FocusEvent e) {
-						if (numField.getText().equals("")) {
-							numField.setText("Input number");
-							numField.setForeground(Color.LIGHT_GRAY);
-						}
-					}
-				};
-				textField.addFocusListener(ghost1);
-				numField.addFocusListener(ghost2);
-
-				jb.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String input = textField.getText();
-						try {
-							int x = Integer.parseInt(numField.getText());
-							clueCount = x;
-							} catch (NumberFormatException a) {
-								label1.setText("Invalid clue or number Please enter again!");
-							}
-						if (m.Legality(input) == true && m.legalityNum(clueCount)) {
-
-							x2.dispose();  // must check legality before disposing the spymaster frame
-							label1.setText(input);
-							label2.setText(numField.getText());
-							labelCode.setText("Hint: " + input);
-							labelNumber.setText("Number: " + clueCount);
-							labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
-							labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
-
-							if (input.equalsIgnoreCase("hertz")) {
-								JFrame frame = new JFrame("EasterEgg");
-								frame.setLocation(450, 250);
-								ImageIcon icon = new ImageIcon("src/hertz.jpg");
-								JLabel label = new JLabel(icon);
-
-								frame.add(label);
-								frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-								frame.pack();
-
-								frame.setVisible(true);
-							}
-
-							if (input.equalsIgnoreCase("testingegg")) {
-								JFrame f = new JFrame();
-
-								ImageIcon image = new ImageIcon("src/img.jpg"); // imports the image
-
-								JLabel lbl = new JLabel(image); // puts the image into a jlabel
-
-								f.getContentPane().add(lbl); // puts label inside the jframe
-
-								f.setSize(image.getIconWidth(), image.getIconHeight()); // gets h and w of image and
-																						// sets jframe to the size
-
-								f.setLocation(150, 250); // sets the location of the jframe
-								f.setVisible(true); // makes the jframe visible
-							}
-						}
-
-						else if (m.Legality(input) && !m.legalityNum(clueCount)) {
-							labelCode.setText("Hint: " + input);
-							labelNumber.setText("Number: Invalid Number");
-						} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
-							labelCode.setText("Hint: Invalid Hint");
-							labelNumber.setText("Number: " + clueCount);
-						} else {
-							labelNumber.setText("Number: Invalid Number");
-							labelCode.setText("Hint: Invalid Hint");
-						}
-
-					}
-
-				});
-
-				// notifyObserver();
-				panelRight.add(jb);
-				panelRight.add(textField);
-				panelRight.add(numField);
-				panelRight.add(label1);
-				panelRight.add(label2);
-				
-				x2.setJMenuBar(menuBar2);
-				// x2.setSize(750, 750);
-
-				GridLayout inY = new GridLayout(0, 2);
-				x2.setLayout(inY);
-				for (int i = 0; i < 25; i++) {
-					String temp = m.allLocations.get(i).getCodeName();
-					JButton j = new JButton(temp);
-					if (m.allLocations.get(i).getTeam() == "Red") {
-						j.setBackground(Color.RED);
-
-					} else if (m.allLocations.get(i).getTeam() == "Blue") {
-						j.setBackground(Color.BLUE);
-
-					} else if (m.allLocations.get(i).getTeam() == "Bystander") {
-						j.setBackground(Color.YELLOW);
-
-					} else if (m.allLocations.get(i).getTeam() == "Assassin") {
-						j.setBackground(Color.GREEN);
-
-					}
-					panelLeft.add(j);
-
-				}
-				x2.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				x2.setUndecorated(true);
-				x2.setVisible(true);
-				x2.getContentPane().add(panelRight, BorderLayout.EAST);
-				x2.add(panelLeft);
 				
 				x2.setVisible(true);
-			}
-		});
+			}});
+
 
 		panelTop.add(Spy);
 		panelTop.add(labelCode);
@@ -368,8 +375,8 @@ public class createGUI implements Observer {
 					}
 
 					if (team == "Red") {
-						if (ssr.getTurn() != 1 && turnOver == false) {
-							ssr.changeTurn();
+						if (ssr.getTurn() == 0) {
+						ssr.changeTurn();
 							clueCount = 0;
 						}
 						
@@ -389,7 +396,7 @@ public class createGUI implements Observer {
 							win.setVisible(true);
 						}
 					} else if (team == "Blue") {
-						if (ssr.getTurn() != 0 && turnOver == false) {
+						if (ssr.getTurn() == 1) {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
@@ -420,7 +427,7 @@ public class createGUI implements Observer {
 
 					} else if (team == "Assassin") {
 						j.setForeground(Color.green);
-						if(ssr.getTurn() != 0) {
+						if(ssr.getTurn() == 1) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
@@ -430,8 +437,8 @@ public class createGUI implements Observer {
 							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 							win.pack();
 							win.setVisible(true);
-						
-							if(ssr.getTurn() != 1) {
+						}
+							if(ssr.getTurn() == 0) {
 								JFrame q = new JFrame("Game Won");
 								q.setLocation(450, 250);
 								ImageIcon w = new ImageIcon("src/red.jpg");
@@ -443,7 +450,7 @@ public class createGUI implements Observer {
 								q.setVisible(true);
 								
 							}
-						}
+						
 					}
 					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
 					if (ssr.getTurn() == 1) {				
