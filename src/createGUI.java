@@ -204,7 +204,7 @@ public class createGUI implements Observer {
 					numField.setText("Input number");
 					numField.setForeground(Color.LIGHT_GRAY);
 
-					x2.setVisible(false);  // must check legality before disposing the spymaster frame
+					x2.setVisible(false);  
 					label1.setText(input);
 					label2.setText(numField.getText());
 					labelCode.setText("Hint: " + input);
