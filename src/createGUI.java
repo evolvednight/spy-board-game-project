@@ -35,7 +35,7 @@ public class createGUI implements Observer {
 	private int clueCount;
 	board ssr = new board();
 	int xx = ssr.getTurn();
-     private String x;
+   
 	public createGUI() {
 		restart();
 	}
@@ -433,6 +433,19 @@ public class createGUI implements Observer {
 							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 							win.pack();
 							win.setVisible(true);
+						
+							if(xx != 1) {
+								JFrame q = new JFrame("Game Won");
+								q.setLocation(450, 250);
+								ImageIcon w = new ImageIcon("src/red.jpg");
+								JLabel y = new JLabel(w);
+
+								q.add(y);
+								q.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+								q.pack();
+								q.setVisible(true);
+								
+							}
 						}
 					}
 				}

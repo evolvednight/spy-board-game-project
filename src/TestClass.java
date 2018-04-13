@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
+
+
 //import java.util.ArrayList;
 
 import org.junit.Test;
@@ -11,7 +13,6 @@ public class TestClass extends main{
 	public void testLlegality() { // test will only pass if there is something in allLocations arrayList
 	
 		main x = new main();
-		
 		
 		boolean y  = x.Legality("Test False");
 		assertEquals(false,y);
