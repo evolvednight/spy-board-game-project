@@ -201,7 +201,7 @@ public class createGUI implements Observer {
 							int x = Integer.parseInt(numField.getText());
 							clueCount = x;
 							} catch (NumberFormatException a) {
-								label1.setText("Invalid number");
+								label1.setText("Invalid clue or number Please enter again!");
 							}
 						if (m.Legality(input) == true && m.legalityNum(clueCount)) {
 
@@ -452,6 +452,7 @@ public class createGUI implements Observer {
 							}
 						}
 					}
+					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
 				}
 			});
 
