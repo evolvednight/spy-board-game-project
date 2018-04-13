@@ -49,26 +49,7 @@ public class createGUI implements Observer {
 		main m = new main();
 		m.gameStart();
 
-		if (m.winningState() == true) {
-			JFrame win = new JFrame("Game Won");
-			win.setLocation(450, 250);
-
-			if (m.getNumRed() == 0) {
-				ImageIcon icon = new ImageIcon("src/red.jpg");
-				JLabel label = new JLabel(icon);
-
-				win.add(label);
-				win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				win.pack();
-			} else {
-				ImageIcon icon = new ImageIcon("src/blue.jpg");
-				JLabel label = new JLabel(icon);
-
-				win.add(label);
-				win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				win.pack();
-			}
-		}
+		
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
@@ -381,6 +362,8 @@ public class createGUI implements Observer {
 				public void actionPerformed(ActionEvent E) {
 					boolean turnOver = false;
 					clueCount = clueCount - 1;
+					j.setMultiClickThreshhold(1000000000);
+					
 					if (clueCount == 0) {
 						ssr.changeTurn();
 						turnOver = true;
@@ -392,17 +375,45 @@ public class createGUI implements Observer {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
+						
 						j.setForeground(Color.red);
+						
 						m.setNumRed(m.getNumRed()-1);
 						redScore.setText("Red Team Points: " + m.getNumRed());
+						if(m.getNumRed() == 0) {
+							JFrame win = new JFrame("Game Won");
+							win.setLocation(450, 250);
+							ImageIcon icon = new ImageIcon("src/red.jpg");
+							JLabel label = new JLabel(icon);
+
+							win.add(label);
+							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							win.pack();
+							win.setVisible(true);
+						}
 					} else if (team == "Blue") {
 						if (xx != 0 && turnOver == false) {
 							ssr.changeTurn();
 							clueCount = 0;
 						}
+						
 						j.setForeground(Color.blue);
 						m.setNumBlue(m.getNumBlue()-1);
 						blueScore.setText("Blue Team Points: " + m.getNumBlue());
+						if(m.getNumBlue() == 0) {
+							JFrame win = new JFrame("Game Won");
+							win.setLocation(450, 250);
+							ImageIcon icon = new ImageIcon("src/blue.jpg");
+							JLabel label = new JLabel(icon);
+
+							win.add(label);
+							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							win.pack();
+							win.setVisible(true);
+						
+							
+							
+						}
 					} else if (team == "Bystander") {
 						j.setForeground(Color.yellow);
 						if (turnOver == false) {
@@ -421,7 +432,11 @@ public class createGUI implements Observer {
 		x1.add(panelTop);
 		x1.add(panelBottom);
 		x1.setVisible(true);
+		
+		
+		
 	}
+	//}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
