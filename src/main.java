@@ -138,10 +138,10 @@ public class main extends board{
 
 		for( int i = 0 ; i< allLocations.size(); i++) {
 			//System.out.println(allLocations.get(i));
-			if(allLocations.get(i).getCodeName() == x && allLocations.get(i).getVisibility() == false) {
+			if(allLocations.get(i).getCodeName().equals(x) && allLocations.get(i).getVisibility() == false) {
 				return false;
 			}
-			else if(allLocations.get(i).getCodeName() == y && allLocations.get(i).getVisibility() == false){
+			else if(allLocations.get(i).getCodeName().equals(y)&& allLocations.get(i).getVisibility() == false){
 				return false;
 			}
 		}// if clue is the same as a codename but has not been revealed its invalid 

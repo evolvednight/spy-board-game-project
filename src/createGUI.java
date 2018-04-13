@@ -242,7 +242,7 @@ public class createGUI implements Observer {
 						else if (m.Legality(input) && !m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: " + input);
 							labelNumber.setText("Number: Invalid Number");
-						} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
+						} else if (m.Legality(input) == false && m.legalityNum(clueCount)) {
 							labelCode.setText("Hint: Invalid Hint");
 							labelNumber.setText("Number: " + clueCount);
 						} else {
@@ -423,6 +423,17 @@ public class createGUI implements Observer {
 
 					} else if (team == "Assassin") {
 						j.setForeground(Color.green);
+						if(xx != 0) {
+							JFrame win = new JFrame("Game Won");
+							win.setLocation(450, 250);
+							ImageIcon icon = new ImageIcon("src/blue.jpg");
+							JLabel label = new JLabel(icon);
+
+							win.add(label);
+							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							win.pack();
+							win.setVisible(true);
+						}
 					}
 				}
 			});
