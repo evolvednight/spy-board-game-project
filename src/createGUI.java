@@ -35,6 +35,7 @@ public class createGUI implements Observer {
 	private int clueCount;
 	board ssr = new board();
 	int xx = ssr.getTurn();
+	private JFrame win;  // declare win frame so You can dispose it in restart button
    
 	public createGUI() {
 		restart();
@@ -89,7 +90,7 @@ public class createGUI implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				x1.dispose();
 				if(aliasx2 != null) {
-				aliasx2.dispose();
+				aliasx2.dispose();   			// double check if aliasx2 is referenced dispose it to avoid error
 				}
 			}
 		};
@@ -123,6 +124,9 @@ public class createGUI implements Observer {
 					x1.dispose();
 					if (aliasx2 != null) {
 						aliasx2.dispose();	//dispose spymaster frame when restart to avoid old spymaster fields
+					}
+					if (win != null) {
+						win.dispose();		//dispose win frame when restart to avoid win frame builds up
 					}
 					restart();
 
@@ -381,7 +385,7 @@ public class createGUI implements Observer {
 						m.setNumRed(m.getNumRed()-1);
 						redScore.setText("Red Team Points: " + m.getNumRed());
 						if(m.getNumRed() == 0) {
-							JFrame win = new JFrame("Game Won");
+							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/red.jpg");
 							JLabel label = new JLabel(icon);
@@ -401,7 +405,7 @@ public class createGUI implements Observer {
 						m.setNumBlue(m.getNumBlue()-1);
 						blueScore.setText("Blue Team Points: " + m.getNumBlue());
 						if(m.getNumBlue() == 0) {
-							JFrame win = new JFrame("Game Won");
+							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
 							JLabel label = new JLabel(icon);
@@ -424,7 +428,7 @@ public class createGUI implements Observer {
 					} else if (team == "Assassin") {
 						j.setForeground(Color.green);
 						if(xx != 0) {
-							JFrame win = new JFrame("Game Won");
+							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
 							JLabel label = new JLabel(icon);
