@@ -49,7 +49,7 @@ public class createGUI implements Observer {
 		main m = new main();
 		m.gameStart();
 
-		
+		JFrame turn;
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
@@ -309,18 +309,6 @@ public class createGUI implements Observer {
 		panelTop.add(labelCode);
 		panelTop.add(labelNumber);
 
-		JButton tend = new JButton("End turn");// lets make this the the button that ends turns
-		panelTop.add(tend);
-		tend.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent t) {
-				ssr.changeTurn();
-				labelCode.setText("Hint: ");
-				labelNumber.setText("Number: ");
-				// labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
-				// labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
-
-			}
-		});
 
 		JLabel disturn = new JLabel();
 			disturn.setText("Turn : Team Red");
@@ -328,7 +316,29 @@ public class createGUI implements Observer {
 			disturn.setFont(new Font("Serif", Font.PLAIN, 40));
 
 		panelTop.add(disturn);
+		
+		JButton tend = new JButton("End turn");// lets make this the the button that ends turns
+		tend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent t) {
+				ssr.changeTurn();
+				labelCode.setText("Hint: ");
+				labelNumber.setText("Number: ");
+				clueCount = 0;  	// update the label Clue count
+				if (ssr.getTurn() == 1) {				
+					disturn.setText("Turn : Team Red");
+					disturn.setForeground(Color.red);
+				}
 
+				if (ssr.getTurn() == 0) {
+					disturn.setText("Turn : Team Blue");
+					disturn.setForeground(Color.blue);
+				}
+				// labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
+				// labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
+
+			}
+		});
+		panelTop.add(tend);
 		// instruction here
 
 		JLabel redScore = new JLabel("Red Team Points: " + m.getNumRed());
