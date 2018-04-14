@@ -282,7 +282,7 @@ public class createGUI implements Observer {
 				j.setBackground(Color.YELLOW);
 
 			} else if (m.allLocations.get(i).getTeam() == "Assassin") {
-				j.setForeground(Color.GREEN);
+				j.setBackground(Color.GREEN);
 
 			}
 			panelLeft.add(j);
