@@ -282,7 +282,7 @@ public class createGUI implements Observer {
 				j.setBackground(Color.YELLOW);
 
 			} else if (m.allLocations.get(i).getTeam() == "Assassin") {
-				j.setBackground(Color.GREEN);
+				j.setForeground(Color.GREEN);
 
 			}
 			panelLeft.add(j);
@@ -438,6 +438,7 @@ public class createGUI implements Observer {
 					} else if (team == "Assassin") {
 						j.setForeground(Color.green);
 						if(ssr.getTurn() == 0) {
+							ssr.setTurn(1);
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
@@ -449,6 +450,7 @@ public class createGUI implements Observer {
 							win.setVisible(true);
 						}
 							if(ssr.getTurn() == 1) {
+								ssr.setTurn(0);
 								JFrame q = new JFrame("Game Won");
 								q.setLocation(450, 250);
 								ImageIcon w = new ImageIcon("src/red.jpg");
