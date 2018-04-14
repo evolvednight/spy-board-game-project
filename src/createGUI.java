@@ -273,16 +273,16 @@ public class createGUI implements Observer {
 			String temp = m.allLocations.get(i).getCodeName();
 			JButton j = new JButton(temp);
 			if (m.allLocations.get(i).getTeam() == "Red") {
-				j.setForeground(Color.RED);
+				j.setBackground(Color.RED);
 
 			} else if (m.allLocations.get(i).getTeam() == "Blue") {
-				j.setForeground(Color.BLUE);
+				j.setBackground(Color.BLUE);
 
 			} else if (m.allLocations.get(i).getTeam() == "Bystander") {
-				j.setForeground(Color.YELLOW);
+				j.setBackground(Color.YELLOW);
 
 			} else if (m.allLocations.get(i).getTeam() == "Assassin") {
-				j.setForeground(Color.GREEN);
+				j.setBackground(Color.GREEN);
 
 			}
 			panelLeft.add(j);
