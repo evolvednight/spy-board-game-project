@@ -225,21 +225,6 @@ public class createGUI implements Observer {
 						frame.setVisible(true);
 					}
 
-					if (input.equalsIgnoreCase("testingegg")) {
-						JFrame f = new JFrame();
-
-						ImageIcon image = new ImageIcon("src/img.jpg"); // imports the image
-
-						JLabel lbl = new JLabel(image); // puts the image into a jlabel
-
-						f.getContentPane().add(lbl); // puts label inside the jframe
-
-						f.setSize(image.getIconWidth(), image.getIconHeight()); // gets h and w of image and
-																				// sets jframe to the size
-
-						f.setLocation(150, 250); // sets the location of the jframe
-						f.setVisible(true); // makes the jframe visible
-					}
 				}
 
 				else if (m.Legality(input) && !m.legalityNum(clueCount)) {
