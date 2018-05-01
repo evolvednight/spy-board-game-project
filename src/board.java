@@ -35,10 +35,10 @@ public void setTurn(int x) {
 	turn = x;
 }
 public void changeTurn() {
-	if (turn == 0) { 
-		turn = 1 ;
-	}else { 
-		turn = 0 ;
+	if (turn != 2) {
+		turn++;
+	} else {
+		turn = 0;
 	}
 	
 }

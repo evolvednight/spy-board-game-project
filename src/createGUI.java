@@ -318,6 +318,12 @@ public class createGUI implements Observer {
 					disturn.setText("Turn : Team Blue");
 					disturn.setForeground(Color.blue);
 				}
+				
+				if (ssr.getTurn() == 0) {
+					disturn.setText("Turn : Team Yellow");
+					disturn.setForeground(Color.yellow);
+				
+				}
 				// labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
 				// labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
 
@@ -335,7 +341,11 @@ public class createGUI implements Observer {
 		blueScore.setForeground(Color.blue);
 		blueScore.setFont(new Font("Serif", Font.PLAIN, 40));
 		panelTop.add(blueScore);
-
+		
+		JLabel yellowScore = new JLabel("Yellow Team Points: " + m.getNumBys());
+		yellowScore.setForeground(Color.yellow);
+		yellowScore.setFont(new Font("Serif", Font.PLAIN, 40));
+		panelTop.add(yellowScore);
 		// JTextArea countField = new JTextArea();
 		// countField.setText("this field is for red and blue counter");
 		// panelTop.add(countField);

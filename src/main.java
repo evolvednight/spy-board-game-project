@@ -57,6 +57,10 @@ public class main extends board{
 	public int getNumBlue() {
 		return numBlue;
 	}
+	
+	public int getNumBys() {
+		return numBystander;
+	}
 
 	/**
 	 * Returns true if the current selection is one of the current team�s agent
