@@ -390,7 +390,7 @@ public class createGuiThreeTeam implements Observer {
 					}
 
 					if (team == "Red") {
-						if (ssr.getTurn() == 0) {
+						if (ssr.getTurn() != 1) {
 						ssr.changeTurn3();
 							clueCount = 0;
 						}
@@ -410,8 +410,8 @@ public class createGuiThreeTeam implements Observer {
 							win.pack();
 							win.setVisible(true);
 						}
-					} else if (team == "Blue") {
-						if (ssr.getTurn() == 1) {
+					}  if (team == "Blue") {
+						if (ssr.getTurn() != 0) {
 							ssr.changeTurn3();
 							clueCount = 0;
 						}
@@ -433,19 +433,19 @@ public class createGuiThreeTeam implements Observer {
 							
 							
 						}
-					} else if (team == "Green") {
-						if (ssr.getTurn() == 2) {
+					}  if (team == "Green") {
+						if (ssr.getTurn() != 2) {
 							ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
 						j.setForeground(Color.GREEN);
 						m.setNumGreen(m.getNumGreen()-1);
-						blueScore.setText("Green Team Points: " + m.getNumGreen());
+						greenScore.setText("Green Team Points: " + m.getNumGreen());
 						if(m.getNumGreen() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
-							ImageIcon icon = new ImageIcon("src/blue.jpg");
+							ImageIcon icon = new ImageIcon("src/green.jpg");
 							JLabel label = new JLabel(icon);
 
 							win.add(label);
