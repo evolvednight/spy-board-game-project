@@ -47,7 +47,7 @@ public class createGuiThreeTeam implements Observer {
 	public void MakeGui() {
 
 		main m = new main();
-		m.gameStart();
+		m.gameStartThreeTeam();
 
 		JFrame turn;
 
@@ -262,12 +262,15 @@ public class createGuiThreeTeam implements Observer {
 
 			} else if (m.allLocations.get(i).getTeam() == "Blue") {
 				j.setBackground(Color.BLUE);
+			
+			} else if (m.allLocations.get(i).getTeam() == "Green") {
+				j.setBackground(Color.GREEN);
 
 			} else if (m.allLocations.get(i).getTeam() == "Bystander") {
 				j.setBackground(Color.YELLOW);
 
 			} else if (m.allLocations.get(i).getTeam() == "Assassin") {
-				j.setBackground(Color.GREEN);
+				j.setBackground(Color.PINK);
 
 			}
 			panelLeft.add(j);
@@ -413,6 +416,29 @@ public class createGuiThreeTeam implements Observer {
 							
 							
 						}
+					} else if (team == "Green") {
+						if (ssr.getTurn() == 2) {
+							ssr.changeTurn();
+							clueCount = 0;
+						}
+						
+						j.setForeground(Color.GREEN);
+						m.setNumGreen(m.getNumGreen()-1);
+						blueScore.setText("Green Team Points: " + m.getNumGreen());
+						if(m.getNumGreen() == 0) {
+							win = new JFrame("Game Won");
+							win.setLocation(450, 250);
+							ImageIcon icon = new ImageIcon("src/blue.jpg");
+							JLabel label = new JLabel(icon);
+
+							win.add(label);
+							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							win.pack();
+							win.setVisible(true);
+						
+							
+							
+						}
 					} else if (team == "Bystander") {
 						j.setForeground(Color.yellow);
 						if (turnOver == false) {
@@ -421,7 +447,7 @@ public class createGuiThreeTeam implements Observer {
 						}
 
 					} else if (team == "Assassin") {
-						j.setForeground(Color.green);
+						j.setForeground(Color.PINK);
 						if(ssr.getTurn() == 0) {
 							ssr.setTurn(0);
 							win = new JFrame("Game Won");
