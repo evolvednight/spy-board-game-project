@@ -350,6 +350,11 @@ public class createGuiThreeTeam implements Observer {
 		blueScore.setForeground(Color.blue);
 		blueScore.setFont(new Font("Serif", Font.PLAIN, 40));
 		panelTop.add(blueScore);
+		
+		JLabel greenScore = new JLabel("Green Team Points: " + m.getNumGreen());
+		greenScore.setForeground(Color.GREEN);
+		greenScore.setFont(new Font("Serif", Font.PLAIN, 40));
+		panelTop.add(greenScore);
 
 		// JTextArea countField = new JTextArea();
 		// countField.setText("this field is for red and blue counter");
