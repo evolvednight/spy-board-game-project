@@ -3,6 +3,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 //import java.util.HashMap;
 
 public class main extends board{
@@ -20,9 +26,10 @@ public class main extends board{
 	// Edwin: code need correction
 	private int numRed;			//declare numbers of all different character for count purpose
 	private int numBlue;
+	private int numGreen;
 	@SuppressWarnings("unused")
 	private int numBystander = 7;
-	protected int numAssassin = 1;
+	protected int numAssassin = 2;
 	/*
 			Scanner choiceRed = new Scanner(System.in);
 			System.out.println("Player1 please type in your choice");
@@ -49,6 +56,9 @@ public class main extends board{
 	public void setNumBlue(int y ) {
 		numBlue = y;
 	}
+	public void setNumGreen(int z) {
+		numGreen = z;
+	}
 	
 	public int getNumRed() {
 		return numRed;
@@ -57,9 +67,8 @@ public class main extends board{
 	public int getNumBlue() {
 		return numBlue;
 	}
-	
-	public int getNumBys() {
-		return numBystander;
+	public int getNumGreen() {
+		return numGreen;
 	}
 
 	/**
@@ -90,6 +99,15 @@ public class main extends board{
 					numBlue--;							// need method for keep or switch turn
 					allLocations.get(i).setVisibility(true);     // change the value to face up
 					if (getTurn() == 1) {
+						setTurn(2);
+						return false;
+					}
+					else
+						return true;
+				} else if (allLocations.get(i).getTeam() == "Green") {
+					numGreen--;							// need method for keep or switch turn
+					allLocations.get(i).setVisibility(true);     // change the value to face up
+					if (getTurn() == 2) {
 						setTurn(0);
 						return false;
 					}
@@ -102,10 +120,15 @@ public class main extends board{
 						setTurn(1);
 						return false;
 					}
-					else {
+					else if(getTurn() == 1){
+						setTurn(2);
+						return false;
+					}
+					else if(getTurn() == 2){
 						setTurn(0);
 						return false;
 					}
+						
 				} else if (allLocations.get(i).getTeam() == "Assassin") {
 					numAssassin--;
 					allLocations.get(i).setVisibility(true); // change the value to face up
@@ -128,8 +151,7 @@ public class main extends board{
 	 * @param clue-string of a clue used in game
 	 * @return-boolean whether clue is legal
 	 */
-
-
+	
 
 	public boolean Legality(String clue) {
 		gameStart();
@@ -177,6 +199,35 @@ ArrayList<String> test = new ArrayList<String>();
 	 *
 	 */
 
+	public boolean winningStateThreeTeam() { //Determines whether the game is in winning state
+		if(numRed != 0 && numBlue != 0) {
+			if(numGreen == 0) {
+	
+	
+			System.out.println("Green team wins!");
+			return true;
+			}
+		}
+		else if(numRed == 0 && numBlue != 0) {
+			if(numGreen !=0) {
+		
+			System.out.println("Red team wins!");
+			return true;
+		}
+			}
+		else if(numBlue == 0 && numRed != 0) {
+				if(numGreen != 0) {
+			System.out.println("Blue Team wins!");
+			return true;
+				}
+		}
+		else if (numRed != 0 && numBlue != 0){
+			if(numGreen != 0) {
+			return false;
+		}
+		}
+		return false;
+	}
 
  
 	public boolean winningState() { //Determines whether the game is in winning state
@@ -296,8 +347,58 @@ ArrayList<String> test = new ArrayList<String>();
 		Location temp = new Location(false,codeNamesOnBoard.get(24),"Assassin");
 		tempArr.add(temp);	//makes last codename the assassin
 		Collections.shuffle(tempArr);
+		allLocations = tempArr;
+	}
+		
+		
+		
+		public void gameStartThreeTeam() {
+			setNumRed(6);
+			setNumBlue(5);
+			setNumGreen(5);
+			String filename = "src/GameWords1.txt";
+			ArrayList<String>allCodeNames = new ArrayList<>();
+			try {
+				for(String codename : Files.readAllLines(Paths.get(filename))) {	//reads file to get all codenames
+					allCodeNames.add(codename);
+				}
+			} catch (IOException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+			Collections.shuffle(allCodeNames);	//shuffles all codenames
 
+			for(int i = 0; i <25;i++) {
+				codeNamesOnBoard.add(allCodeNames.get(i));	//adds 25 to an Arraylist
+			}
+			Collections.shuffle(codeNamesOnBoard);		//reshuffles arraylist with all codenames in use
+
+			ArrayList<Location>tempArr = new ArrayList<Location>();
+
+			for(int i = 0;i<6;i++) {	//adds the first 6 codenames(0-5) to ArrayList under Red Team 
+				Location temp = new Location(false,codeNamesOnBoard.get(i),"Red");
+				tempArr.add(temp);
+			}
+			for(int i = 6;i<11;i++) {	//adds the next 8 codenames(9-16) to ArrayList under Blue Team 
+				Location temp = new Location(false,codeNamesOnBoard.get(i),"Blue");
+				tempArr.add(temp);
+			}
+			for(int i = 11;i<16;i++) {	//adds the next 7 codenames(17-23) to ArrayList under Green Team 
+				Location temp = new Location(false,codeNamesOnBoard.get(i),"Green");
+				tempArr.add(temp);
+			}
+			for(int i = 16;i<23;i++) {	//adds the next 7 codenames(17-23) to ArrayList under bystander
+				Location temp = new Location(false,codeNamesOnBoard.get(i),"Bystander");
+				tempArr.add(temp);
+			}
+
+			for(int i = 23;i<25;i++) {	//adds the next 7 codenames(17-23) to ArrayList under Assassin
+				Location temp = new Location(false,codeNamesOnBoard.get(i),"Assassin");
+				tempArr.add(temp);
+			}
+			Collections.shuffle(tempArr);
 
 		allLocations = tempArr;
 		
