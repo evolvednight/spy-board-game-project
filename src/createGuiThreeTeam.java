@@ -55,9 +55,11 @@ public class createGuiThreeTeam implements Observer {
 		JMenu menu = new JMenu("File");
 		JMenuItem start = new JMenuItem("Start New Game");
 		JMenuItem exit = new JMenuItem("Exit Game");
+		JMenuItem startThreeTeam = new JMenuItem("Start 3 Player Game");
 		menuBar.add(menu);
 		menu.add(start);
 		menu.add(exit);
+		menu.add(startThreeTeam);
 
 		JMenuBar menuBar2 = new JMenuBar();
 		JMenu menu2 = new JMenu("File");
@@ -112,7 +114,17 @@ public class createGuiThreeTeam implements Observer {
 			}
 		};
 		start.addActionListener(start2);
-
+		
+		ActionListener start3 = new ActionListener() {// menu restart
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				x1.getContentPane().removeAll();
+				x1.dispose();
+				new testGuiThreeTeam();
+			}
+		};
+		startThreeTeam.addActionListener(start3);
+		
 		JButton restart = new JButton("Restart");
 
 		restart.addActionListener(new ActionListener() {
@@ -367,14 +379,14 @@ public class createGuiThreeTeam implements Observer {
 					j.setMultiClickThreshhold(1000000000);
 					
 					if (clueCount == 0) {
-						ssr.changeTurn33();
+						ssr.changeTurn3();
 						turnOver = true;
 
 					}
 
 					if (team == "Red") {
 						if (ssr.getTurn() == 0) {
-						ssr.changeTurn33();
+						ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
