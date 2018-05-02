@@ -43,6 +43,13 @@ public void changeTurn() {
 	}
 	
 }
+public void changeTurn3() {
+	if (turn != 2) {
+		turn++;
+	} else {
+		turn = 0;
+	}
+}
 
 
 

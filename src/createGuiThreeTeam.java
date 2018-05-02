@@ -308,7 +308,7 @@ public class createGuiThreeTeam implements Observer {
 		JButton tend = new JButton("End turn");// lets make this the the button that ends turns
 		tend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent t) {
-				ssr.changeTurn();
+				ssr.changeTurn3();
 				labelCode.setText("Hint: ");
 				labelNumber.setText("Number: ");
 				clueCount = 0;  	// update the label Clue count
@@ -367,14 +367,14 @@ public class createGuiThreeTeam implements Observer {
 					j.setMultiClickThreshhold(1000000000);
 					
 					if (clueCount == 0) {
-						ssr.changeTurn();
+						ssr.changeTurn33();
 						turnOver = true;
 
 					}
 
 					if (team == "Red") {
 						if (ssr.getTurn() == 0) {
-						ssr.changeTurn();
+						ssr.changeTurn33();
 							clueCount = 0;
 						}
 						
@@ -395,7 +395,7 @@ public class createGuiThreeTeam implements Observer {
 						}
 					} else if (team == "Blue") {
 						if (ssr.getTurn() == 1) {
-							ssr.changeTurn();
+							ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
@@ -418,7 +418,7 @@ public class createGuiThreeTeam implements Observer {
 						}
 					} else if (team == "Green") {
 						if (ssr.getTurn() == 2) {
-							ssr.changeTurn();
+							ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
@@ -442,7 +442,7 @@ public class createGuiThreeTeam implements Observer {
 					} else if (team == "Bystander") {
 						j.setForeground(Color.yellow);
 						if (turnOver == false) {
-							ssr.changeTurn();
+							ssr.changeTurn3();
 							clueCount = 0;
 						}
 
@@ -485,6 +485,10 @@ public class createGuiThreeTeam implements Observer {
 						disturn.setText("Turn : Team Blue");
 						disturn.setForeground(Color.blue);
 
+					}
+					if (ssr.getTurn() == 2) {
+						disturn.setText("Turn : Team Green");
+						disturn.setForeground(Color.green);
 					}
 				}
 			});
