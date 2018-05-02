@@ -154,9 +154,9 @@ public class main extends board{
 	
 
 	public boolean Legality(String clue) {
-		gameStart();
-		String x = clue.toLowerCase();//Turns clue into Lowercase
+//		gameStart();
 		String y = clue.toUpperCase();//Turns clue into Uppercase
+		int checker = 0;
 	
 ArrayList<String> test = new ArrayList<String>();
    
@@ -169,17 +169,30 @@ ArrayList<String> test = new ArrayList<String>();
 			test.add(z.getCodeName());
 			
 		}
-			if(test.contains(x)) {
-				return false;
+		for(int i = 0;i<test.size();i++){
+			if(y.contains(test.get(i))){
+				checker++;
 			}
-			else if(test.contains(y)){
-				return false;
-			}
+		}
+		if(checker > 0) {
+			return false;
+		}
+		else {
 			return true;
-		}// if clue is the same as a codename but has not been revealed its invalid 
+		}
+		}
 
 	public boolean legalityNum(int x) {
 		if( x > 0 && x <= 9) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean legalityNumThree(int x) {
+		if( x > 0 && x <= 6) {
 			return true;
 		}
 		else {
