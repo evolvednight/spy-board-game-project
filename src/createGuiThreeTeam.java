@@ -223,7 +223,20 @@ public class createGuiThreeTeam implements Observer {
 					labelNumber.setText("Number: " + clueCount);
 					labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
 					labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
+					if (input.equalsIgnoreCase("hertz")) {
+						JFrame frame = new JFrame("EasterEgg");
+						frame.setLocation(460, 250);
+						ImageIcon icon = new ImageIcon("src/IMG_2829.jpg");
+						JLabel label = new JLabel(icon);
 
+						frame.add(label);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						frame.pack();
+
+						frame.setVisible(true);
+					}
+
+					
 					if (input.equalsIgnoreCase("hertz")) {
 						JFrame frame = new JFrame("EasterEgg");
 						frame.setLocation(450, 250);
