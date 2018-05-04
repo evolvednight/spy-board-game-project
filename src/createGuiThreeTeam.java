@@ -395,6 +395,7 @@ public class createGuiThreeTeam implements Observer {
 					}
 
 					if (team == "Red") {
+						if (m.getRedAssassin() == 0) {
 						if (ssr.getTurn() != 1) {
 						ssr.changeTurn3();
 							clueCount = 0;
@@ -415,7 +416,11 @@ public class createGuiThreeTeam implements Observer {
 							win.pack();
 							win.setVisible(true);
 						}
+						} else {
+							ssr.changeTurn3();
+						}
 					}  if (team == "Blue") {
+						if (m.getBlueAssassin() == 0)
 						if (ssr.getTurn() != 0) {
 							ssr.changeTurn3();
 							clueCount = 0;
