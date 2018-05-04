@@ -333,6 +333,11 @@ public class createGuiThreeTeam implements Observer {
 					disturn.setText("Turn : Team Blue");
 					disturn.setForeground(Color.blue);
 				}
+				if (ssr.getTurn() == 2) {
+					disturn.setText("Turn : Team Green");
+					disturn.setForeground(Color.GREEN);
+				}
+
 				// labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
 				// labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
 
