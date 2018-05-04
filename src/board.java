@@ -55,13 +55,12 @@ public void changeTurn3() {
 		if (a.getBlueAssassin() == 1 && turn == 0) {
 			turn++;
 		}
-		if (a.getRedAssassin() == 1 && turn == 1) {
+		else if (a.getRedAssassin() == 1 && turn == 1) {
 			turn++;
 		}
-		if (a.getGreenAssassin() == 1 && turn == 2) {
+		else if (a.getGreenAssassin() == 1 && turn == 2) {
 			turn = 0;
 		}
-	} else {
 	}
 }
 

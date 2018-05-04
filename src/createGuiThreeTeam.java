@@ -223,7 +223,7 @@ public class createGuiThreeTeam implements Observer {
 					labelNumber.setText("Number: " + clueCount);
 					labelCode.setFont(new Font("Serif", Font.PLAIN, 40));
 					labelNumber.setFont(new Font("Serif", Font.PLAIN, 40));
-					if (input.equalsIgnoreCase("hertz")) {
+					if (input.equalsIgnoreCase("exam")) {
 						JFrame frame = new JFrame("EasterEgg");
 						frame.setLocation(460, 250);
 						ImageIcon icon = new ImageIcon("src/IMG_2829.jpg");
@@ -373,6 +373,11 @@ public class createGuiThreeTeam implements Observer {
 		greenScore.setForeground(Color.GREEN);
 		greenScore.setFont(new Font("Serif", Font.PLAIN, 40));
 		panelTop.add(greenScore);
+		
+		JLabel eliminationBoard = new JLabel("Teams Eliminated: " + m.whoElim());
+		eliminationBoard.setForeground(Color.PINK);
+		eliminationBoard.setFont(new Font("Serif", Font.PLAIN, 40));
+		panelTop.add(eliminationBoard);
 
 		// JTextArea countField = new JTextArea();
 		// countField.setText("this field is for red and blue counter");
@@ -486,9 +491,21 @@ public class createGuiThreeTeam implements Observer {
 							clueCount = 0;
 						}
 
-					} else if (team == "Assassin") {
+					} else if (team == "Assassin") {	//bug here, green always win..
 						j.setForeground(Color.PINK);
-						if(ssr.getTurn() == 0) {
+						m.setNumAssassin(m.getNumAssassin()-1);
+						if(m.getTurn() == 0) {
+							m.setBlueAssassin(1);
+						}
+						if(m.getTurn() == 1) {
+							m.setRedAssassin(1);
+						}
+						if(m.getTurn() == 2) {
+							m.setGreenAssassin(1);
+						}
+						eliminationBoard.setText("Teams Eliminated: " + m.whoElim());
+						if(m.assWinThree() > -1) {
+						if(m.assWinThree() == 0) {
 							ssr.setTurn(0);
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
@@ -500,7 +517,7 @@ public class createGuiThreeTeam implements Observer {
 							win.pack();
 							win.setVisible(true);
 						}
-							if(ssr.getTurn() == 1) {
+							if(m.assWinThree() == 1) {
 								ssr.setTurn(1);
 								JFrame q = new JFrame("Game Won");
 								q.setLocation(450, 250);
@@ -510,10 +527,21 @@ public class createGuiThreeTeam implements Observer {
 								q.add(y);
 								q.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 								q.pack();
-								q.setVisible(true);
-								
+								q.setVisible(true);								
 							}
-						
+							if(m.assWinThree() == 2) {
+								ssr.setTurn(2);
+								JFrame q = new JFrame("Game Won");
+								q.setLocation(450, 250);
+								ImageIcon w = new ImageIcon("src/green.jpg");
+								JLabel y = new JLabel(w);
+
+								q.add(y);
+								q.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+								q.pack();
+								q.setVisible(true);								
+							}
+						}
 					}
 					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
 					if (ssr.getTurn() == 1) {				

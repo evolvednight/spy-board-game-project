@@ -92,7 +92,12 @@ public class main extends board{
 	public int getNumGreen() {
 		return numGreen;
 	}
-
+	public int getNumAssassin() {
+		return numAssassin;
+	}
+	public void setNumAssassin(int numAssassin) {
+		this.numAssassin = numAssassin;
+	}
 	/**
 	 * Returns true if the current selection is one of the current team�s agent
 	 * this method decrement the count of each team when the codename was selected
@@ -320,11 +325,39 @@ ArrayList<String> test = new ArrayList<String>();
 		}else {//does nothing game keeps going//
 			return false ;
 		}
-
-
-
+		}
+	
+	public int assWinThree() {
+		int potato = -1;
+			
+		if(numAssassin == 0){
+			if(greenAssassin == 0){
+				potato = 2;
+			}
+			else if(redAssassin == 0){
+				potato = 1;
+			}
+			else{
+				potato = 0;
+			}
+		}
+		
+		return potato;
+		}
+	
+	public String whoElim() {
+		String potato = "";
+		if(redAssassin == 1) {
+			potato = "Red Team";
+		}
+		if(blueAssassin == 1) {
+			potato = potato + " Blue Team";
+		}
+		if(greenAssassin == 1) {
+			potato = potato + " Green Team";
+		}	
+		return potato;
 	}
-	//End of Austins Code
 
 
 
