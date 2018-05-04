@@ -27,6 +27,9 @@ public class main extends board{
 	private int numRed;			//declare numbers of all different character for count purpose
 	private int numBlue;
 	private int numGreen;
+	private int redAssassin = 0;
+	private int blueAssassin = 0;
+	private int greenAssassin = 0;
 	@SuppressWarnings("unused")
 	private int numBystander = 7;
 	protected int numAssassin = 2;
@@ -50,8 +53,27 @@ public class main extends board{
 				visibility.put(copy.get(i), false); //all false values are not visible	
 			}
 	 */
+	
 	public void setNumRed(int x) {
 		numRed = x;
+	}
+	public int getRedAssassin() {
+		return redAssassin;
+	}
+	public void setRedAssassin(int redAssassin) {
+		this.redAssassin = redAssassin;
+	}
+	public int getBlueAssassin() {
+		return blueAssassin;
+	}
+	public void setBlueAssassin(int blueAssassin) {
+		this.blueAssassin = blueAssassin;
+	}
+	public int getGreenAssassin() {
+		return greenAssassin;
+	}
+	public void setGreenAssassin(int greenAssassin) {
+		this.greenAssassin = greenAssassin;
 	}
 	public void setNumBlue(int y ) {
 		numBlue = y;

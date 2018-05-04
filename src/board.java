@@ -44,13 +44,15 @@ public void changeTurn() {
 	
 }
 public void changeTurn3() {
+	main a = new main();
+	if (a.getBlueAssassin() == 1)
 	if (turn != 2) {
 		turn++;
 	} else {
 		turn = 0;
 	}
+	
 }
-
 
 
 public ArrayList<String> getCodeNamesOnBoard(){
