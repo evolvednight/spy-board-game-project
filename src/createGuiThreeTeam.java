@@ -212,7 +212,7 @@ public class createGuiThreeTeam implements Observer {
 					} catch (NumberFormatException a) {
 						label1.setText("Invalid clue or number Please enter again!");
 					}
-				if (m.Legality(input) == true && m.legalityNum(clueCount)) {
+				if (m.Legality(input) == true && m.legalityNumThree(clueCount)) {
 					textField.setText("Input Clue");
 					textField.setForeground(Color.LIGHT_GRAY);
 					numField.setText("Input number");
