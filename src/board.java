@@ -44,28 +44,23 @@ public void changeTurn() {
 	
 }
 public void changeTurn3() {
-	main a = new main();
-
-	if(turn == 0){	//blue
-		if(a.getRedAssassin() == 1) {
-			turn = 2;
-		}
-		else {
-			turn ++;
-		}
+	main a = new main();	
+	turn++;
+	if(turn == 3) {
+		turn = 0;
 	}
-	else if(turn == 1){	//red
-		if(a.getGreenAssassin() == 1) {
-			turn = 0;
-		}
-		else {
-			turn ++;
-		}		
-	}else if(turn == 2){	//green
-		if(a.getBlueAssassin() == 1) {
+	if(a.getBlueAssassin()==1) {
+		if(turn == 0) {
 			turn = 1;
 		}
-		else {
+	}
+	if(a.getRedAssassin()==1) {
+		if(turn == 1) {
+			turn = 2;
+		}
+	}
+	if(a.getGreenAssassin()==1) {
+		if(turn == 2) {
 			turn = 0;
 		}
 	}
