@@ -257,12 +257,15 @@ public class createGuiThreeTeam implements Observer {
 				else if (m.Legality(input) && !m.legalityNum(clueCount)) {
 					labelCode.setText("Hint: " + input);
 					labelNumber.setText("Number: Invalid Number");
+					label1.setText("Invalid number Please enter again!");
 				} else if (!m.Legality(input) && m.legalityNum(clueCount)) {
 					labelCode.setText("Hint: Invalid Hint");
 					labelNumber.setText("Number: " + clueCount);
+					label1.setText("Invalid clue  Please enter again!");
 				} else {
 					labelNumber.setText("Number: Invalid Number");
 					labelCode.setText("Hint: Invalid Hint");
+					label1.setText("Invalid clue and number Please enter again!");
 				}
 
 			}
