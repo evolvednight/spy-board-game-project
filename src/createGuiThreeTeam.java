@@ -40,6 +40,7 @@ public class createGuiThreeTeam implements Observer {
 		restart();
 	}
 
+	
 	public void restart() {
 		MakeGui();
 	}
@@ -558,6 +559,9 @@ public class createGuiThreeTeam implements Observer {
 							}
 						}
 						ssr.changeTurn3();
+						labelCode.setText("Hint: ");
+						labelNumber.setText("Number: ");
+						clueCount = 0;
 					}
 					
 					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
