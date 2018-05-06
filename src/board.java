@@ -46,19 +46,26 @@ public void changeTurn() {
 public void changeTurn3() {
 	main a = new main();
 
-	if (turn != 2) {
-		turn++;
-	} else {
-		turn = 0;
+	if(turn == 0){	//blue
+		if(a.getRedAssassin() == 1) {
+			turn = 2;
+		}
+		else {
+			turn ++;
+		}
 	}
-	if (a.getBlueAssassin() == 1 || a.getRedAssassin() == 1 || a.getGreenAssassin() ==1) {
-		if (a.getBlueAssassin() == 1 && turn == 0) {
-			turn++;
+	else if(turn == 1){	//red
+		if(a.getGreenAssassin() == 1) {
+			turn = 0;
 		}
-		else if (a.getRedAssassin() == 1 && turn == 1) {
-			turn++;
+		else {
+			turn ++;
+		}		
+	}else if(turn == 2){	//green
+		if(a.getBlueAssassin() == 1) {
+			turn = 1;
 		}
-		else if (a.getGreenAssassin() == 1 && turn == 2) {
+		else {
 			turn = 0;
 		}
 	}

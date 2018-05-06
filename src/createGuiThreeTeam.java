@@ -53,7 +53,7 @@ public class createGuiThreeTeam implements Observer {
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
-		JMenuItem start = new JMenuItem("Start 2 player Game");
+		JMenuItem start = new JMenuItem("Start New Game");
 		JMenuItem exit = new JMenuItem("Exit Game");
 		JMenuItem startThreeTeam = new JMenuItem("Start 3 Player Game");
 		menuBar.add(menu);
@@ -112,12 +112,12 @@ public class createGuiThreeTeam implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				x3.getContentPane().removeAll();
 				x3.dispose();
-				createGUI createTwoFrame= new createGUI();
+				createGUI twoPlayerFrame = new createGUI();
 			}
 		};
 		start.addActionListener(start2);
 		
-		ActionListener start3 = new ActionListener() {// menu restart
+		ActionListener start3 = new ActionListener() {// menu restart 3 player team
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				x3.getContentPane().removeAll();
@@ -406,16 +406,10 @@ public class createGuiThreeTeam implements Observer {
 			j.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent E) {
 					boolean turnOver = false;
-					if (clueCount != 0) {
-					clueCount = clueCount - 1;
-					}
+//					if (clueCount != 0) {
+//					clueCount = clueCount - 1;
+//					}
 					j.setMultiClickThreshhold(1000000000);
-					
-					if (clueCount == 0) {
-						ssr.changeTurn3();
-						turnOver = true;
-
-					}
 
 					if (team == "Red") {
 						if (m.getRedAssassin() == 0) {
@@ -428,6 +422,12 @@ public class createGuiThreeTeam implements Observer {
 						
 						m.setNumRed(m.getNumRed()-1);
 						redScore.setText("Red Team Points: " + m.getNumRed());
+						clueCount = clueCount - 1;
+						if (clueCount <= 0) {	//moved clue count change here..
+							ssr.changeTurn3();
+							turnOver = true;
+
+						}
 						if(m.getNumRed() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
@@ -452,6 +452,12 @@ public class createGuiThreeTeam implements Observer {
 						j.setForeground(Color.blue);
 						m.setNumBlue(m.getNumBlue()-1);
 						blueScore.setText("Blue Team Points: " + m.getNumBlue());
+						clueCount = clueCount - 1;
+						if (clueCount <= 0) {	//moved clue count change here..
+							ssr.changeTurn3();
+							turnOver = true;
+
+						}
 						if(m.getNumBlue() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
@@ -475,6 +481,12 @@ public class createGuiThreeTeam implements Observer {
 						j.setForeground(Color.GREEN);
 						m.setNumGreen(m.getNumGreen()-1);
 						greenScore.setText("Green Team Points: " + m.getNumGreen());
+						clueCount = clueCount - 1;
+						if (clueCount <= 0) {	//moved clue count change here..
+							ssr.changeTurn3();
+							turnOver = true;
+
+						}
 						if(m.getNumGreen() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
@@ -484,28 +496,26 @@ public class createGuiThreeTeam implements Observer {
 							win.add(label);
 							win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 							win.pack();
-							win.setVisible(true);
-						
-							
-							
+							win.setVisible(true);							
 						}
-					} else if (team == "Bystander") {
+					} 
+					else if (team == "Bystander") {
 						j.setForeground(Color.yellow);
 						if (turnOver == false) {
 							ssr.changeTurn3();
 							clueCount = 0;
 						}
 
-					} else if (team == "Assassin") {	//bug here, green always win..
+					} else if (team == "Assassin") {
 						j.setForeground(Color.PINK);
 						m.setNumAssassin(m.getNumAssassin()-1);
-						if(m.getTurn() == 0) {
+						if(ssr.getTurn() == 0) {
 							m.setBlueAssassin(1);
 						}
-						if(m.getTurn() == 1) {
+						if(ssr.getTurn() == 1) {
 							m.setRedAssassin(1);
 						}
-						if(m.getTurn() == 2) {
+						if(ssr.getTurn() == 2) {
 							m.setGreenAssassin(1);
 						}
 						eliminationBoard.setText("Teams Eliminated: " + m.whoElim());
@@ -547,7 +557,9 @@ public class createGuiThreeTeam implements Observer {
 								q.setVisible(true);								
 							}
 						}
+						ssr.changeTurn3();
 					}
+					
 					labelNumber.setText("Number: " + clueCount);   	// update the label Clue count
 					if (ssr.getTurn() == 1) {				
 						disturn.setText("Turn : Team Red");
