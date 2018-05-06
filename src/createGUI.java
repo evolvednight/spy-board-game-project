@@ -129,6 +129,7 @@ public class createGUI implements Observer {
 			}
 		};
 		startThreeTeam.addActionListener(start3);
+		
 		JButton restart = new JButton("Restart");
 
 		restart.addActionListener(new ActionListener() {
