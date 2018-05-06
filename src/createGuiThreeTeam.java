@@ -53,7 +53,7 @@ public class createGuiThreeTeam implements Observer {
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
-		JMenuItem start = new JMenuItem("Start New Game");
+		JMenuItem start = new JMenuItem("Start 2 player Game");
 		JMenuItem exit = new JMenuItem("Exit Game");
 		JMenuItem startThreeTeam = new JMenuItem("Start 3 Player Game");
 		menuBar.add(menu);
@@ -112,7 +112,7 @@ public class createGuiThreeTeam implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				x3.getContentPane().removeAll();
 				x3.dispose();
-				restart();
+				createGUI createTwoFrame= new createGUI();
 			}
 		};
 		start.addActionListener(start2);
@@ -122,7 +122,7 @@ public class createGuiThreeTeam implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				x3.getContentPane().removeAll();
 				x3.dispose();
-				new testGuiThreeTeam();
+				restart();
 			}
 		};
 		startThreeTeam.addActionListener(start3);
