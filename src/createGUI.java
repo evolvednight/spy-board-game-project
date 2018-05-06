@@ -114,13 +114,18 @@ public class createGUI implements Observer {
 			}
 		};
 		start.addActionListener(start2);
-		ActionListener start3 = new ActionListener() {// menu restart
+		ActionListener start3 = new ActionListener() {// menu start 3 team game
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				x1.getContentPane().removeAll();
+				if(x1 != null) {
 				x1.dispose();
+				}
+				if(aliasx2 != null) {
+				aliasx2.dispose();
+				}
 				createGuiThreeTeam threePlayerFrame = new createGuiThreeTeam();
-				threePlayerFrame.MakeGui();
+				
 			}
 		};
 		startThreeTeam.addActionListener(start3);

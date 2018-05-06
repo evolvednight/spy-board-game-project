@@ -31,7 +31,7 @@ import javafx.scene.control.ToggleButton;
 
 @SuppressWarnings("unused")
 public class createGuiThreeTeam implements Observer {
-	private JFrame aliasx2;
+	private JFrame aliasx4;
 	private int clueCount;
 	board ssr = new board();
 	private JFrame win;  // declare win frame so You can dispose it in restart button
@@ -67,16 +67,16 @@ public class createGuiThreeTeam implements Observer {
 		menuBar2.add(menu2);
 		menu2.add(exit2);
 
-		JFrame x1 = new JFrame("CodeName game");
-		x1.setJMenuBar(menuBar);
-		x1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// x1.setSize(1000,1000);
-		x1.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		x1.setUndecorated(true);
-		x1.setVisible(true);
+		JFrame x3 = new JFrame("CodeName game");
+		x3.setJMenuBar(menuBar);
+		x3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// x3.setSize(1000,1000);
+		x3.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		x3.setUndecorated(true);
+		x3.setVisible(true);
 
 		GridLayout inX = new GridLayout(2, 2);
-		x1.setLayout(inX);
+		x3.setLayout(inX);
 		JPanel panelTop = new JPanel(new GridLayout(6, 6));
 		JPanel panelBottom = new JPanel(new GridLayout(5, 5));
 		JLabel labelCode = new JLabel();
@@ -89,9 +89,9 @@ public class createGuiThreeTeam implements Observer {
 		ActionListener exit3 = new ActionListener() {// menu exit
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				x1.dispose();
-				if(aliasx2 != null) {
-				aliasx2.dispose();   			// double check if aliasx2 is referenced dispose it to avoid error
+				x3.dispose();
+				if(aliasx4 != null) {
+				aliasx4.dispose();   			// double check if aliasx4 is referenced dispose it to avoid error
 				}
 			}
 		};
@@ -100,7 +100,9 @@ public class createGuiThreeTeam implements Observer {
 		ActionListener exit4 = new ActionListener() {// menu exit
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				aliasx2.dispose();
+				if(aliasx4 != null) {
+				aliasx4.dispose();
+				}
 			}
 		};
 		exit2.addActionListener(exit4);
@@ -108,8 +110,8 @@ public class createGuiThreeTeam implements Observer {
 		ActionListener start2 = new ActionListener() {// menu restart
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				x1.getContentPane().removeAll();
-				x1.dispose();
+				x3.getContentPane().removeAll();
+				x3.dispose();
 				restart();
 			}
 		};
@@ -118,8 +120,8 @@ public class createGuiThreeTeam implements Observer {
 		ActionListener start3 = new ActionListener() {// menu restart
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				x1.getContentPane().removeAll();
-				x1.dispose();
+				x3.getContentPane().removeAll();
+				x3.dispose();
 				new testGuiThreeTeam();
 			}
 		};
@@ -131,10 +133,10 @@ public class createGuiThreeTeam implements Observer {
 			public void actionPerformed(ActionEvent e) {
 
 				if (e.getSource() == restart) {
-					x1.getContentPane().removeAll();
-					x1.dispose();
-					if (aliasx2 != null) {
-						aliasx2.dispose();	//dispose spymaster frame when restart to avoid old spymaster fields
+					x3.getContentPane().removeAll();
+					x3.dispose();
+					if (aliasx4 != null) {
+						aliasx4.dispose();	//dispose spymaster frame when restart to avoid old spymaster fields
 					}
 					if (win != null) {
 						win.dispose();		//dispose win frame when restart to avoid win frame builds up
@@ -147,8 +149,8 @@ public class createGuiThreeTeam implements Observer {
 
 		panelTop.add(restart);
 
-		JFrame x2 = new JFrame("Spy Master Window");
-		aliasx2 = x2;
+		JFrame x4 = new JFrame("Spy Master Window");
+		aliasx4 = x4;
 		JPanel panelRight = new JPanel();
 		// panelRight.setLayout(new GridLayout(0,1));
 		JPanel panelLeft = new JPanel();
@@ -216,7 +218,7 @@ public class createGuiThreeTeam implements Observer {
 					numField.setText("Input number");
 					numField.setForeground(Color.LIGHT_GRAY);
 
-					x2.setVisible(false);  
+					x4.setVisible(false);  
 					label1.setText(input);
 					label2.setText(numField.getText());
 					labelCode.setText("Hint: " + input);
@@ -274,11 +276,11 @@ public class createGuiThreeTeam implements Observer {
 		panelRight.add(label1);
 		panelRight.add(label2);
 		
-		x2.setJMenuBar(menuBar2);
-		// x2.setSize(750, 750);
+		x4.setJMenuBar(menuBar2);
+		// x4.setSize(750, 750);
 
 		GridLayout inY = new GridLayout(0, 2);
-		x2.setLayout(inY);
+		x4.setLayout(inY);
 		for (int i = 0; i < 25; i++) {
 			String temp = m.allLocations.get(i).getCodeName();
 			JButton j = new JButton(temp);
@@ -301,20 +303,20 @@ public class createGuiThreeTeam implements Observer {
 			panelLeft.add(j);
 
 		}
-		x2.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		x2.setUndecorated(true);
-		x2.setVisible(true);
-		x2.getContentPane().add(panelRight, BorderLayout.EAST);
-		x2.add(panelLeft);
+		x4.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		x4.setUndecorated(true);
+		x4.setVisible(true);
+		x4.getContentPane().add(panelRight, BorderLayout.EAST);
+		x4.add(panelLeft);
 		
-		x2.setVisible(false);
+		x4.setVisible(false);
 
 
 		JButton Spy = new JButton("Spy Master");
 		Spy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				x2.setVisible(true);
+				x4.setVisible(true);
 			}});
 
 
@@ -563,9 +565,9 @@ public class createGuiThreeTeam implements Observer {
 
 			// ll
 		}
-		x1.add(panelTop);
-		x1.add(panelBottom);
-		x1.setVisible(true);
+		x3.add(panelTop);
+		x3.add(panelBottom);
+		x3.setVisible(true);
 		
 		
 		
