@@ -414,7 +414,7 @@ public class createGuiThreeTeam implements Observer {
 					if (team == "Red") {
 						if (m.getRedAssassin() == 0) {
 						if (ssr.getTurn() != 1) {
-						ssr.changeTurn3();
+//						ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
@@ -428,7 +428,7 @@ public class createGuiThreeTeam implements Observer {
 							turnOver = true;
 
 						}
-						if(m.getNumRed() == 0) {
+						if(m.getNumRed() == 0 && m.getRedAssassin() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/red.jpg");
@@ -445,7 +445,7 @@ public class createGuiThreeTeam implements Observer {
 					}  if (team == "Blue") {
 						if (m.getBlueAssassin() == 0)
 						if (ssr.getTurn() != 0) {
-							ssr.changeTurn3();
+//							ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
@@ -458,7 +458,7 @@ public class createGuiThreeTeam implements Observer {
 							turnOver = true;
 
 						}
-						if(m.getNumBlue() == 0) {
+						if(m.getNumBlue() == 0 && m.getBlueAssassin() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/blue.jpg");
@@ -474,7 +474,7 @@ public class createGuiThreeTeam implements Observer {
 						}
 					}  if (team == "Green") {
 						if (ssr.getTurn() != 2) {
-							ssr.changeTurn3();
+//							ssr.changeTurn3();
 							clueCount = 0;
 						}
 						
@@ -487,7 +487,7 @@ public class createGuiThreeTeam implements Observer {
 							turnOver = true;
 
 						}
-						if(m.getNumGreen() == 0) {
+						if(m.getNumGreen() == 0 && m.getGreenAssassin() == 0) {
 							win = new JFrame("Game Won");
 							win.setLocation(450, 250);
 							ImageIcon icon = new ImageIcon("src/green.jpg");

@@ -348,7 +348,7 @@ ArrayList<String> test = new ArrayList<String>();
 	public String whoElim() {
 		String potato = "";
 		if(redAssassin == 1) {
-			potato = "Red Team";
+			potato = potato + " Red Team";
 		}
 		if(blueAssassin == 1) {
 			potato = potato + " Blue Team";
